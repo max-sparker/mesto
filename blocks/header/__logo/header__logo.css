@@ -1,0 +1,14 @@
+.header__logo {
+  background-image: url('../../../images/mestro-logo.svg');
+  background-repeat: no-repeat;
+  width: 143px;
+  height: 34px;
+}
+
+@media screen and (max-width: 936px) {
+  .header__logo {
+    margin-left: 27px;
+    width: 104px;
+    height: 24px;
+  }
+}
