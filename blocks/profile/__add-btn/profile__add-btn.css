@@ -17,3 +17,17 @@
   opacity: 0.6;
   transition: 0.5s;
 }
+
+@media screen and (max-width: 936px) {
+  .profile__add-btn {
+    margin: 36px auto 0;
+    padding: 0 19px;
+    width: 340px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile__add-btn {
+    width: 282px;
+  }
+}
