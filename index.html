@@ -80,12 +80,13 @@
         <button class="popup__close-btn" type="button" aria-label="Закрыть окно"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__edit-form">
-          <input class="popup__edit-item" type="text" name="username" placeholder="Имя" required>
-          <input class="popup__edit-item" type="text" name="profession" placeholder="Профессия" required>
-          <button class="popup__save-btn" type="button" aria-label="Сохранить профиль">Сохранить</button>
+          <input class="popup__edit-item popup__edit-item_type_username" type="text" name="username" placeholder="Имя" required>
+          <input class="popup__edit-item popup__edit-item_type_description" type="text" name="description" placeholder="О Себе" required>
+          <button class="popup__save-btn" type="submit" aria-label="Сохранить профиль">Сохранить</button>
         </form>
       </div>
     </section>
   </div>
+  <script src="./pages/index.js"></script>
 </body>
 </html>

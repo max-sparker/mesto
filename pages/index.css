@@ -28,3 +28,4 @@
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__edit-item/popup__edit-item.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
+@import url(../blocks/popup/_opened/popup_opened.css);

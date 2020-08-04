@@ -20,6 +20,7 @@
 
 @media screen and (max-width: 480px) {
   .profile__edit-btn {
+    padding: 8px;
     width: 18px;
     height: 18px;
     background-size: 8px 8px;
