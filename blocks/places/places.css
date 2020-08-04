@@ -1,6 +1,10 @@
 .places {
   margin: 0 auto;
-  padding-top: 51px;
+  padding: 51px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  gap: 21px 18px;
+  list-style: none;
 }
 
 @media screen and (max-width: 920px) {
