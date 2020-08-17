@@ -26,7 +26,7 @@ const initialCards = [
 ];
 
 const popupProfile = document.querySelector('.popup-profile');
-const popupOpenButton = document.querySelector('.profile__edit-btn');
+const popupProfileOpenButton = document.querySelector('.profile__edit-btn');
 const popupProfileCloseButton = popupProfile.querySelector('.popup__close-btn');
 const popupProfileOverlay = popupProfile.querySelector('.popup__overlay');
 const profileName = document.querySelector('.profile__name');
@@ -52,6 +52,14 @@ const saveProfile = function (event) {
   popupToggle();
 }
 
+
+
+popupProfileOpenButton.addEventListener('click', popupToggle);
+popupProfileCloseButton.addEventListener('click', popupToggle);
+formProfileElement.addEventListener('submit', saveProfile);
+popupProfileOverlay.addEventListener('click', popupToggle);
+
+
 const placeContainer = document.querySelector(".places");
 const addCardToContainer = card => {
   const cardElement = document.querySelector("#cardTemplate").content.cloneNode(true);
@@ -60,11 +68,12 @@ const addCardToContainer = card => {
   cardElement.querySelector(".card__name").textContent = card.name;
   placeContainer.append(cardElement);
 }
-
 initialCards.forEach(addCardToContainer);
 
-popupOpenButton.addEventListener('click', popupToggle);
-popupProfileCloseButton.addEventListener('click', popupToggle);
-formProfileElement.addEventListener('submit', saveProfile);
-popupProfileOverlay.addEventListener('click', popupToggle);
+const popupCard = document.querySelector('.popup-card');
+const popupCardOpenButton = document.querySelector('.profile__add-btn');
+
+popupCardOpenButton.addEventListener('click', () => {
+  popupCard.classList.add('popup_opened');
+})
 
