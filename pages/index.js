@@ -1,14 +1,14 @@
-let popup = document.querySelector('.popup');
-let popupOpenButton = document.querySelector('.profile__edit-btn');
-let popupCloseButton = popup.querySelector('.popup__close-btn');
-let popupOverlay = popup.querySelector('.popup__overlay');
-let profileName = document.querySelector('.profile__name');
-let profileDescr = document.querySelector('.profile__description');
-let formElement = document.querySelector('.popup__edit-form');
-let profileInputName = document.querySelector('.popup__edit-item_type_username');
-let profileInputDescr = document.querySelector('.popup__edit-item_type_description');
+const popup = document.querySelector('.popup');
+const popupOpenButton = document.querySelector('.profile__edit-btn');
+const popupCloseButton = popup.querySelector('.popup__close-btn');
+const popupOverlay = popup.querySelector('.popup__overlay');
+const profileName = document.querySelector('.profile__name');
+const profileDescr = document.querySelector('.profile__description');
+const formElement = document.querySelector('.popup__edit-form');
+const profileInputName = document.querySelector('.popup__edit-item_type_username');
+const profileInputDescr = document.querySelector('.popup__edit-item_type_description');
 
-let popupToggle = function () {
+const popupToggle = function () {
   if (popup.classList.contains('popup_opened')) {
     popup.classList.remove('popup_opened');
   } else {
@@ -18,7 +18,7 @@ let popupToggle = function () {
   }
 }
 
-let saveProfile = function (event) {
+const saveProfile = function (event) {
   event.preventDefault();
   profileName.textContent = profileInputName.value;
   profileDescr.textContent = profileInputDescr.value;
