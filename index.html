@@ -31,15 +31,27 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <section class="popup popup-profile">
       <div class="popup__overlay"></div>
       <div class="popup__container">
         <button class="popup__close-btn" type="button" aria-label="Закрыть окно"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__edit-form" name="edit-profile">
-          <input class="popup__edit-item popup__edit-item_type_username" type="text" name="username" placeholder="Имя" required>
-          <input class="popup__edit-item popup__edit-item_type_description" type="text" name="description" placeholder="О Себе" required>
+        <form class="popup__form" name="edit-profile">
+          <input class="popup__input popup__input_type_username" type="text" name="username" placeholder="Имя" required>
+          <input class="popup__input popup__input_type_description" type="text" name="description" placeholder="О Себе" required>
           <button class="popup__save-btn" type="submit" aria-label="Сохранить профиль">Сохранить</button>
+        </form>
+      </div>
+    </section>
+    <section class="popup popup-card">
+      <div class="popup__overlay"></div>
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button" aria-label="Закрыть окно"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form class="popup__form" name="add-card">
+          <input class="popup__input popup__input_type_placename" type="text" name="placeName" placeholder="Название" required>
+          <input class="popup__input popup__input_type_placelink" type="text" name="placeLink" placeholder="Ссылка на картинку" required>
+          <button class="popup__save-btn" type="submit" aria-label="Добавить место">Создать</button>
         </form>
       </div>
     </section>

@@ -25,23 +25,23 @@ const initialCards = [
   }
 ];
 
-const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup-profile');
 const popupOpenButton = document.querySelector('.profile__edit-btn');
-const popupCloseButton = popup.querySelector('.popup__close-btn');
-const popupOverlay = popup.querySelector('.popup__overlay');
+const popupProfileCloseButton = popupProfile.querySelector('.popup__close-btn');
+const popupProfileOverlay = popupProfile.querySelector('.popup__overlay');
 const profileName = document.querySelector('.profile__name');
 const profileDescr = document.querySelector('.profile__description');
-const formElement = document.querySelector('.popup__edit-form');
-const profileInputName = document.querySelector('.popup__edit-item_type_username');
-const profileInputDescr = document.querySelector('.popup__edit-item_type_description');
+const formProfileElement = popupProfile.querySelector('.popup__form');
+const profileInputName = formProfileElement.querySelector('.popup__input_type_username');
+const profileInputDescr = formProfileElement.querySelector('.popup__input_type_description');
 
 const popupToggle = function () {
-  if (popup.classList.contains('popup_opened')) {
-    popup.classList.remove('popup_opened');
+  if (popupProfile.classList.contains('popup_opened')) {
+    popupProfile.classList.remove('popup_opened');
   } else {
     profileInputName.value = profileName.textContent;
     profileInputDescr.value = profileDescr.textContent;
-    popup.classList.add('popup_opened');
+    popupProfile.classList.add('popup_opened');
   }
 }
 
@@ -64,7 +64,7 @@ const addCardToContainer = card => {
 initialCards.forEach(addCardToContainer);
 
 popupOpenButton.addEventListener('click', popupToggle);
-popupCloseButton.addEventListener('click', popupToggle);
-formElement.addEventListener('submit', saveProfile);
-popupOverlay.addEventListener('click', popupToggle);
+popupProfileCloseButton.addEventListener('click', popupToggle);
+formProfileElement.addEventListener('submit', saveProfile);
+popupProfileOverlay.addEventListener('click', popupToggle);
 
