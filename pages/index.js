@@ -72,8 +72,11 @@ initialCards.forEach(addCardToContainer);
 
 const popupCard = document.querySelector('.popup-card');
 const popupCardOpenButton = document.querySelector('.profile__add-btn');
+const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
 
 popupCardOpenButton.addEventListener('click', () => {
   popupCard.classList.add('popup_opened');
 })
-
+popupCardCloseButton.addEventListener('click', () => {
+  popupCard.classList.remove('popup_opened');
+})
