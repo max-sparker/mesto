@@ -67,6 +67,10 @@ const addCardToContainer = card => {
   cardElement.querySelector('.card__image').src = card.link;
   cardElement.querySelector('.card__image').alt = 'Фото ' + card.name;
   cardElement.querySelector('.card__name').textContent = card.name;
+  cardElement.querySelector('.card__remove-btn').addEventListener('click', (evt) => {
+    const card = evt.target.closest('.card');
+    card.remove();
+  })
   placeContainer.prepend(cardElement);
 }
 initialCards.forEach(addCardToContainer);
