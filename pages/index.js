@@ -71,6 +71,9 @@ const addCardToContainer = card => {
     const card = evt.target.closest('.card');
     card.remove();
   })
+  cardElement.querySelector('.card__like-btn').addEventListener('click', (evt) => {
+    evt.target.classList.toggle('card__like-btn_liked');
+  })
   placeContainer.prepend(cardElement);
 }
 initialCards.forEach(addCardToContainer);
