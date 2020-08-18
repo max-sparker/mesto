@@ -35,6 +35,7 @@ const formProfileElement = popupProfile.querySelector('.popup__form');
 const profileInputName = formProfileElement.querySelector('.popup__input_type_username');
 const profileInputDescr = formProfileElement.querySelector('.popup__input_type_description');
 
+
 const popupToggle = function () {
   if (popupProfile.classList.contains('popup_opened')) {
     popupProfile.classList.remove('popup_opened');
@@ -63,20 +64,35 @@ popupProfileOverlay.addEventListener('click', popupToggle);
 const placeContainer = document.querySelector(".places");
 const addCardToContainer = card => {
   const cardElement = document.querySelector("#cardTemplate").content.cloneNode(true);
-  cardElement.querySelector(".card__image").src = card.link;
-  cardElement.querySelector(".card__image").alt = 'Фото ' + card.name;
-  cardElement.querySelector(".card__name").textContent = card.name;
-  placeContainer.append(cardElement);
+  cardElement.querySelector('.card__image').src = card.link;
+  cardElement.querySelector('.card__image').alt = 'Фото ' + card.name;
+  cardElement.querySelector('.card__name').textContent = card.name;
+  placeContainer.prepend(cardElement);
 }
 initialCards.forEach(addCardToContainer);
 
 const popupCard = document.querySelector('.popup-card');
 const popupCardOpenButton = document.querySelector('.profile__add-btn');
 const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
+const popupCardOverlay = popupCard.querySelector('.popup__overlay');
+const formCardElement = popupCard.querySelector('.popup__form');
+
 
 popupCardOpenButton.addEventListener('click', () => {
   popupCard.classList.add('popup_opened');
 })
 popupCardCloseButton.addEventListener('click', () => {
+  popupCard.classList.remove('popup_opened');
+})
+popupCardOverlay.addEventListener('click', () => {
+  popupCard.classList.remove('popup_opened');
+})
+formCardElement.addEventListener('submit', evt => {
+  evt.preventDefault();
+  const cardTitle = formCardElement.querySelector('.popup__input_type_placename').value;
+  const cardLink = formCardElement.querySelector('.popup__input_type_placelink').value;
+  const card = {'name':cardTitle, 'link':cardLink};
+  addCardToContainer(card);
+  formCardElement.reset();
   popupCard.classList.remove('popup_opened');
 })
