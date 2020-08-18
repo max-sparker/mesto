@@ -74,6 +74,12 @@ const addCardToContainer = card => {
   cardElement.querySelector('.card__like-btn').addEventListener('click', (evt) => {
     evt.target.classList.toggle('card__like-btn_liked');
   })
+  cardElement.querySelector('.card__image').addEventListener('click', () => {
+    popupImageEl.src = card.link;
+    popupImageEl.alt = 'Фото ' + card.name;
+    popupImageDesc.textContent = card.name;
+    popupImage.classList.add('popup_opened');
+  })
   placeContainer.prepend(cardElement);
 }
 initialCards.forEach(addCardToContainer);
@@ -102,4 +108,17 @@ formCardElement.addEventListener('submit', evt => {
   addCardToContainer(card);
   formCardElement.reset();
   popupCard.classList.remove('popup_opened');
+})
+
+const popupImage = document.querySelector('.popup-image');
+const popupImageEl = popupImage.querySelector('.popup-image__image');
+const popupImageDesc = popupImage.querySelector('.popup-image__desc');
+const popupImageCloseButton = popupImage.querySelector('.popup-image__close-btn');
+const popupImageOverlay = popupImage.querySelector('.popup__overlay');
+
+popupImageCloseButton.addEventListener('click', () => {
+  popupImage.classList.remove('popup_opened');
+});
+popupImageOverlay.addEventListener('click', () => {
+  popupImage.classList.remove('popup_opened');
 })
