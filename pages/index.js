@@ -50,7 +50,7 @@ const saveProfile = evt => {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileDescr.textContent = profileInputDescr.value;
-  popupToggle();
+  popupProfileToggle();
 }
 
 popupProfileOpenButton.addEventListener('click', popupProfileToggle);
