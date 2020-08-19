@@ -120,7 +120,7 @@ const popupImageOverlay = popupImage.querySelector('.popup__overlay');
 popupImageCloseButton.addEventListener('click', () => {
   popupImage.classList.remove('popup_opened');
   popupImageEl.src = "#";
-  popupImageEl.alt = "";
+  popupImageEl.alt = "нет изображения";
   popupImageDesc.textContent = "";
 });
 popupImageOverlay.addEventListener('click', () => {
