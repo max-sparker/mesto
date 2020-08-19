@@ -115,14 +115,13 @@ const popupImageOverlay = popupImage.querySelector('.popup__overlay');
 const popupImageToggle = () => {
   if (popupImage.classList.contains('popup_opened')) {
     popupImage.classList.remove('popup_opened');
-    popupImageEl.src = "";
-    popupImageEl.alt = "нет изображения";
-    popupImageDesc.textContent = "";
+    popupImageEl.src = '';
+    popupImageEl.alt = 'нет изображения';
+    popupImageDesc.textContent = '';
   } else {
     popupImage.classList.add('popup_opened');
   }
 }
-
 
 popupImageCloseButton.addEventListener('click', popupImageToggle);
 popupImageOverlay.addEventListener('click', popupImageToggle);
