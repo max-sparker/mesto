@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 
-
+// Редактирование профиля
 const popupProfile = document.querySelector('.popup-profile');
 const popupProfileOpenButton = document.querySelector('.profile__edit-btn');
 const popupProfileCloseButton = popupProfile.querySelector('.popup__close-btn');
@@ -36,8 +36,7 @@ const formProfileElement = popupProfile.querySelector('.popup__form');
 const profileInputName = formProfileElement.querySelector('.popup__input_type_username');
 const profileInputDescr = formProfileElement.querySelector('.popup__input_type_description');
 
-
-const popupToggle = function () {
+const popupProfileToggle = () => {
   if (popupProfile.classList.contains('popup_opened')) {
     popupProfile.classList.remove('popup_opened');
   } else {
@@ -47,21 +46,19 @@ const popupToggle = function () {
   }
 }
 
-const saveProfile = function (event) {
-  event.preventDefault();
+const saveProfile = evt => {
+  evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileDescr.textContent = profileInputDescr.value;
   popupToggle();
 }
 
-
-
-popupProfileOpenButton.addEventListener('click', popupToggle);
-popupProfileCloseButton.addEventListener('click', popupToggle);
+popupProfileOpenButton.addEventListener('click', popupProfileToggle);
+popupProfileCloseButton.addEventListener('click', popupProfileToggle);
 formProfileElement.addEventListener('submit', saveProfile);
-popupProfileOverlay.addEventListener('click', popupToggle);
+popupProfileOverlay.addEventListener('click', popupProfileToggle);
 
-
+// Добавление карточки
 const placeContainer = document.querySelector(".places");
 const addCardToContainer = card => {
   const cardElement = document.querySelector("#cardTemplate").content.cloneNode(true);
@@ -79,7 +76,7 @@ const addCardToContainer = card => {
     popupImageEl.src = card.link;
     popupImageEl.alt = 'Фото ' + card.name;
     popupImageDesc.textContent = card.name;
-    popupImage.classList.add('popup_opened');
+    popupImageToggle();
   })
   placeContainer.prepend(cardElement);
 }
@@ -91,16 +88,13 @@ const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
 const popupCardOverlay = popupCard.querySelector('.popup__overlay');
 const formCardElement = popupCard.querySelector('.popup__form');
 
+const popupCardToggle = () => {
+  popupCard.classList.toggle('popup_opened');
+}
 
-popupCardOpenButton.addEventListener('click', () => {
-  popupCard.classList.add('popup_opened');
-})
-popupCardCloseButton.addEventListener('click', () => {
-  popupCard.classList.remove('popup_opened');
-})
-popupCardOverlay.addEventListener('click', () => {
-  popupCard.classList.remove('popup_opened');
-})
+popupCardOpenButton.addEventListener('click', popupCardToggle);
+popupCardCloseButton.addEventListener('click', popupCardToggle);
+popupCardOverlay.addEventListener('click', popupCardToggle);
 formCardElement.addEventListener('submit', evt => {
   evt.preventDefault();
   const cardTitle = formCardElement.querySelector('.popup__input_type_placename').value;
@@ -108,21 +102,27 @@ formCardElement.addEventListener('submit', evt => {
   const card = {'name':cardTitle, 'link':cardLink};
   addCardToContainer(card);
   formCardElement.reset();
-  popupCard.classList.remove('popup_opened');
+  popupCardToggle();
 })
 
+// Полный просмотр изображения
 const popupImage = document.querySelector('.popup-image');
 const popupImageEl = popupImage.querySelector('.popup-image__image');
 const popupImageDesc = popupImage.querySelector('.popup-image__desc');
 const popupImageCloseButton = popupImage.querySelector('.popup-image__close-btn');
 const popupImageOverlay = popupImage.querySelector('.popup__overlay');
 
-popupImageCloseButton.addEventListener('click', () => {
-  popupImage.classList.remove('popup_opened');
-  popupImageEl.src = "#";
-  popupImageEl.alt = "нет изображения";
-  popupImageDesc.textContent = "";
-});
-popupImageOverlay.addEventListener('click', () => {
-  popupImage.classList.remove('popup_opened');
-})
+const popupImageToggle = () => {
+  if (popupImage.classList.contains('popup_opened')) {
+    popupImage.classList.remove('popup_opened');
+    popupImageEl.src = "";
+    popupImageEl.alt = "нет изображения";
+    popupImageDesc.textContent = "";
+  } else {
+    popupImage.classList.add('popup_opened');
+  }
+}
+
+
+popupImageCloseButton.addEventListener('click', popupImageToggle);
+popupImageOverlay.addEventListener('click', popupImageToggle);
