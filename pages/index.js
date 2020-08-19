@@ -109,7 +109,7 @@ formCardElement.addEventListener('submit', evt => {
 const popupImage = document.querySelector('.popup-image');
 const popupImageEl = popupImage.querySelector('.popup-image__image');
 const popupImageDesc = popupImage.querySelector('.popup-image__desc');
-const popupImageCloseButton = popupImage.querySelector('.popup-image__close-btn');
+const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
 const popupImageOverlay = popupImage.querySelector('.popup__overlay');
 
 const popupImageToggle = () => {
