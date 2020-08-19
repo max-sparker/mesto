@@ -59,11 +59,12 @@ formProfileElement.addEventListener('submit', saveProfile);
 popupProfileOverlay.addEventListener('click', popupProfileToggle);
 
 // Добавление карточки
-const placeContainer = document.querySelector(".places");
+const placeContainer = document.querySelector('.places');
 const addCardToContainer = card => {
-  const cardElement = document.querySelector("#cardTemplate").content.cloneNode(true);
-  cardElement.querySelector('.card__image').src = card.link;
-  cardElement.querySelector('.card__image').alt = 'Фото ' + card.name;
+  const cardElement = document.querySelector('#cardTemplate').content.cloneNode(true);
+  const cardImage = cardElement.querySelector('.card__image');
+  cardImage.src = card.link;
+  cardImage.alt = `Фото ${card.name}`;
   cardElement.querySelector('.card__name').textContent = card.name;
   cardElement.querySelector('.card__remove-btn').addEventListener('click', (evt) => {
     const card = evt.target.closest('.card');
@@ -74,7 +75,7 @@ const addCardToContainer = card => {
   })
   cardElement.querySelector('.card__image').addEventListener('click', () => {
     popupImageEl.src = card.link;
-    popupImageEl.alt = 'Фото ' + card.name;
+    popupImageEl.alt = `Фото ${card.name}`;
     popupImageDesc.textContent = card.name;
     popupImageToggle();
   })
@@ -116,7 +117,7 @@ const popupImageToggle = () => {
   if (popupImage.classList.contains('popup_opened')) {
     popupImage.classList.remove('popup_opened');
     popupImageEl.src = '';
-    popupImageEl.alt = 'нет изображения';
+    popupImageEl.alt = '';
     popupImageDesc.textContent = '';
   } else {
     popupImage.classList.add('popup_opened');
