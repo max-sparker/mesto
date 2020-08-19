@@ -25,6 +25,7 @@ const initialCards = [
   }
 ];
 
+
 const popupProfile = document.querySelector('.popup-profile');
 const popupProfileOpenButton = document.querySelector('.profile__edit-btn');
 const popupProfileCloseButton = popupProfile.querySelector('.popup__close-btn');
@@ -118,6 +119,9 @@ const popupImageOverlay = popupImage.querySelector('.popup__overlay');
 
 popupImageCloseButton.addEventListener('click', () => {
   popupImage.classList.remove('popup_opened');
+  popupImageEl.src = "#";
+  popupImageEl.alt = "";
+  popupImageDesc.textContent = "";
 });
 popupImageOverlay.addEventListener('click', () => {
   popupImage.classList.remove('popup_opened');
