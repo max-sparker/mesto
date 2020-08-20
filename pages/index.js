@@ -36,30 +36,47 @@ const formProfileElement = popupProfile.querySelector('.popup__form');
 const profileInputName = formProfileElement.querySelector('.popup__input_type_username');
 const profileInputDescr = formProfileElement.querySelector('.popup__input_type_description');
 
+const popupCard = document.querySelector('.popup-card');
+const popupCardOpenButton = document.querySelector('.profile__add-btn');
+const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
+const popupCardOverlay = popupCard.querySelector('.popup__overlay');
+const formCardElement = popupCard.querySelector('.popup__form');
+
+const popupImage = document.querySelector('.popup-image');
+const popupImageElement = popupImage.querySelector('.popup-image__image');
+const popupImageDescription = popupImage.querySelector('.popup-image__desc');
+const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
+const popupImageOverlay = popupImage.querySelector('.popup__overlay');
+
 // Контейнер для карточек
 const placeContainer = document.querySelector('.places');
 
-const popupProfileToggle = () => {
-  if (popupProfile.classList.contains('popup_opened')) {
-    popupProfile.classList.remove('popup_opened');
-  } else {
-    profileInputName.value = profileName.textContent;
-    profileInputDescr.value = profileDescr.textContent;
-    popupProfile.classList.add('popup_opened');
-  }
+const toggleModalWindow = (modalWindow) => {
+  modalWindow.classList.toggle('popup_opened');
 }
 
 const saveProfile = evt => {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileDescr.textContent = profileInputDescr.value;
-  popupProfileToggle();
+  toggleModalWindow(popupProfile);
 }
 
-popupProfileOpenButton.addEventListener('click', popupProfileToggle);
-popupProfileCloseButton.addEventListener('click', popupProfileToggle);
+popupProfileOpenButton.addEventListener('click', () => {
+  profileInputName.value = profileName.textContent;
+  profileInputDescr.value = profileDescr.textContent;
+  toggleModalWindow(popupProfile);
+});
+
+popupProfileCloseButton.addEventListener('click', () => {
+  toggleModalWindow(popupProfile);
+});
+
+popupProfileOverlay.addEventListener('click', () => {
+  toggleModalWindow(popupProfile);
+});
+
 formProfileElement.addEventListener('submit', saveProfile);
-popupProfileOverlay.addEventListener('click', popupProfileToggle);
 
 // рендер карточки
 const renderCard = card => {
@@ -79,10 +96,10 @@ const handleDeleteCard = (evt) => {
 
 // демонстрация изображения
 const handlePreviewPicture = (evt) => {
-  popupImageEl.src = evt.target.src;
-  popupImageEl.alt = `Фото ${evt.target.alt}`;
-  popupImageDesc.textContent = evt.target.alt;
-  popupImageToggle();
+  popupImageElement.src = evt.target.src;
+  popupImageElement.alt = `Фото ${evt.target.alt}`;
+  popupImageDescription.textContent = evt.target.alt;
+  toggleModalWindow(popupImage);
 }
 
 const getCardElement = (name, link) => {
@@ -115,50 +132,42 @@ const fillInitialCards = () => {
 
 fillInitialCards();
 
-const popupCard = document.querySelector('.popup-card');
-const popupCardOpenButton = document.querySelector('.profile__add-btn');
-const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
-const popupCardOverlay = popupCard.querySelector('.popup__overlay');
-const formCardElement = popupCard.querySelector('.popup__form');
-
-const popupCardToggle = () => {
-  popupCard.classList.toggle('popup_opened');
-}
-
-popupCardOpenButton.addEventListener('click', popupCardToggle);
-popupCardCloseButton.addEventListener('click', popupCardToggle);
-popupCardOverlay.addEventListener('click', popupCardToggle);
-
 const createCard = () => {
   const cardTitle = formCardElement.querySelector('.popup__input_type_placename').value;
   const cardLink = formCardElement.querySelector('.popup__input_type_placelink').value;
   renderCard(getCardElement(cardTitle, cardLink));
 }
 
+popupCardOpenButton.addEventListener('click', () => {
+  toggleModalWindow(popupCard);
+});
+popupCardCloseButton.addEventListener('click', () => {
+  toggleModalWindow(popupCard);
+});
+popupCardOverlay.addEventListener('click', () => {
+  toggleModalWindow(popupCard);
+});
+
 formCardElement.addEventListener('submit', evt => {
   evt.preventDefault();
   createCard();
   formCardElement.reset();
-  popupCardToggle();
+  toggleModalWindow(popupCard);
 })
 
-// Полный просмотр изображения
-const popupImage = document.querySelector('.popup-image');
-const popupImageEl = popupImage.querySelector('.popup-image__image');
-const popupImageDesc = popupImage.querySelector('.popup-image__desc');
-const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
-const popupImageOverlay = popupImage.querySelector('.popup__overlay');
-
-const popupImageToggle = () => {
-  if (popupImage.classList.contains('popup_opened')) {
-    popupImage.classList.remove('popup_opened');
-    popupImageEl.src = '';
-    popupImageEl.alt = '';
-    popupImageDesc.textContent = '';
-  } else {
-    popupImage.classList.add('popup_opened');
-  }
+// очистка данных об изображении
+const clearImageDescription = () => {
+  popupImageElement.src = '';
+  popupImageElement.alt = '';
+  popupImageDescription.textContent = '';
 }
 
-popupImageCloseButton.addEventListener('click', popupImageToggle);
-popupImageOverlay.addEventListener('click', popupImageToggle);
+popupImageCloseButton.addEventListener('click', () => {
+  toggleModalWindow(popupImage);
+  clearImageDescription();
+
+});
+popupImageOverlay.addEventListener('click', () => {
+  toggleModalWindow(popupImage);
+  clearImageDescription();
+});
