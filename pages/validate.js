@@ -46,6 +46,15 @@ const hasInvalidInput = (inputList) => {
   })
 }
 
+// состояние кнопки
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__btn_disabled');
+  } else {
+    buttonElement.classList.remove('popup__btn_disabled');
+  }
+}
+
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
