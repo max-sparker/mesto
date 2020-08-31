@@ -13,14 +13,7 @@
   transition: opacity .4s;
 }
 
-.popup__btn:hover {
+.popup__btn:hover:enabled {
   opacity: 0.8;
 }
 
-.popup__btn:disabled {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
-  box-sizing: border-box;
-  opacity: 0.2;
-}
