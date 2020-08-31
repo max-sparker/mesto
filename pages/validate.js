@@ -39,6 +39,12 @@ const enableValidation = ({formSelector, ...rest}) => {
   });
 }
 
+// есть ли поле, что не прошло вадидацию
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+}
 
 enableValidation({
   formSelector: '.popup__form',
