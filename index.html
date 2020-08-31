@@ -38,9 +38,9 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" name="edit-profile">
           <input class="popup__input popup__input_type_username" type="text" name="username" placeholder="Имя" required minlength="2" maxlength="40">
-          <span class="popup__input-error" id="username-input-error"></span>
+          <span class="popup__error" id="username-input-error"></span>
           <input class="popup__input popup__input_type_description" type="text" name="description" placeholder="О Себе" required minlength="2" maxlength="200">
-          <span class="popup__input-error" id="description-input-error"></span>
+          <span class="popup__error" id="description-input-error"></span>
           <button class="popup__btn" type="submit" aria-label="Сохранить профиль">Сохранить</button>
         </form>
       </div>
@@ -52,9 +52,9 @@
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="add-card">
           <input class="popup__input popup__input_type_placename" type="text" name="placeName" placeholder="Название" required maxlength="30">
-          <span class="popup__input-error" id="placename-input-error"></span>
+          <span class="popup__error" id="placename-input-error"></span>
           <input class="popup__input popup__input_type_placelink" type="url" name="placeLink" placeholder="Ссылка на картинку" required>
-          <span class="popup__input-error" id="placelink-input-error"></span>
+          <span class="popup__error" id="placelink-input-error"></span>
           <button class="popup__btn popup__btn_disabled" type="submit" aria-label="Добавить место" disabled>Создать</button>
         </form>
       </div>
