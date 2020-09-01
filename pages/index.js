@@ -29,7 +29,6 @@ const initialCards = [
 const popupProfile = document.querySelector('.popup-profile');
 const popupProfileOpenButton = document.querySelector('.profile__edit-btn');
 const popupProfileCloseButton = popupProfile.querySelector('.popup__close-btn');
-const popupProfileOverlay = popupProfile.querySelector('.popup__overlay');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const formProfileElement = popupProfile.querySelector('.popup__form');
@@ -40,7 +39,6 @@ const profileInputDescription = formProfileElement.querySelector('.popup__input_
 const popupCard = document.querySelector('.popup-card');
 const popupCardOpenButton = document.querySelector('.profile__add-btn');
 const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
-const popupCardOverlay = popupCard.querySelector('.popup__overlay');
 const formCardElement = popupCard.querySelector('.popup__form');
 
 // Изображение
@@ -48,7 +46,6 @@ const popupImage = document.querySelector('.popup-image');
 const popupImageElement = popupImage.querySelector('.popup-image__image');
 const popupImageDescription = popupImage.querySelector('.popup-image__desc');
 const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
-const popupImageOverlay = popupImage.querySelector('.popup__overlay');
 
 // контейнер для карточек
 const placeContainer = document.querySelector('.places');
@@ -57,12 +54,33 @@ const placeContainer = document.querySelector('.places');
 const toggleModalWindow = (modalWindow) => {
   if (modalWindow.classList.contains('popup_opened')) {
     modalWindow.classList.remove('popup_opened');
+    modalWindow.removeEventListener('click', closePopupOverlay);
+    document.removeEventListener('keydown', closePopupEscape);
+    if (modalWindow.classList.contains('popup-image')) {
+      clearImageDescription();
+    }
   } else {
     modalWindow.classList.add('popup_opened');
+    modalWindow.addEventListener('click', closePopupOverlay);
+    document.addEventListener('keydown', closePopupEscape);
   }
 }
 
+// закрытие окна кликом на оверлей
+const closePopupOverlay = evt => {
+  const popup = document.querySelector('.popup_opened');
+  if(evt.target.classList.contains('popup__overlay')) {
+    toggleModalWindow(popup);
+  }
+}
 
+// закрытие окна по клавише Escape
+const closePopupEscape = evt => {
+  const popup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    toggleModalWindow(popup);
+  }
+}
 
 // сохранение данных о профиле
 const saveProfile = evt => {
@@ -79,10 +97,6 @@ popupProfileOpenButton.addEventListener('click', () => {
 });
 
 popupProfileCloseButton.addEventListener('click', () => {
-  toggleModalWindow(popupProfile);
-});
-
-popupProfileOverlay.addEventListener('click', () => {
   toggleModalWindow(popupProfile);
 });
 
@@ -157,9 +171,6 @@ popupCardOpenButton.addEventListener('click', () => {
 popupCardCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupCard);
 });
-popupCardOverlay.addEventListener('click', () => {
-  toggleModalWindow(popupCard);
-});
 
 formCardElement.addEventListener('submit', evt => {
   evt.preventDefault();
@@ -179,10 +190,6 @@ popupImageCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupImage);
   clearImageDescription();
 
-});
-popupImageOverlay.addEventListener('click', () => {
-  toggleModalWindow(popupImage);
-  clearImageDescription();
 });
 
 
