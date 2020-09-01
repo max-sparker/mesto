@@ -1,3 +1,4 @@
+// отображение ошибок
 const showInputError = (formElement, inputElement, errorMessage, {inputErrorClass, errorClass}) => {
   const errorElement = formElement.querySelector(`#${inputElement.name}-input-error`);
   inputElement.classList.add(inputErrorClass);
@@ -5,6 +6,7 @@ const showInputError = (formElement, inputElement, errorMessage, {inputErrorClas
   errorElement.classList.add(errorClass);
 };
 
+// скрытие ошибок
 const hideInputError = (formElement, inputElement, {inputErrorClass, errorClass}) => {
   const errorElement = formElement.querySelector(`#${inputElement.name}-input-error`);
   inputElement.classList.remove(inputErrorClass);
@@ -12,6 +14,7 @@ const hideInputError = (formElement, inputElement, {inputErrorClass, errorClass}
   errorElement.textContent = '';
 };
 
+// проверка поля на валидность
 const checkInputValidity = (formElement, inputElement, rest) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, rest);
@@ -38,6 +41,7 @@ const toggleButtonState = (inputList, buttonElement, {inactiveButtonClass}) => {
   }
 }
 
+// установка слушателя
 const setEventListeners = (formElement, {inputSelector, submitButtonSelector, ...rest}) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
