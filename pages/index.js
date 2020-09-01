@@ -190,5 +190,3 @@ popupImageCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupImage);
   clearImageDescription();
 });
-
-
