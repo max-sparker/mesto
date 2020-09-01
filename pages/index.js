@@ -189,7 +189,6 @@ const clearImageDescription = () => {
 popupImageCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupImage);
   clearImageDescription();
-
 });
 
 
