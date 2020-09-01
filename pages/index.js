@@ -50,15 +50,17 @@ const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
 // контейнер для карточек
 const placeContainer = document.querySelector('.places');
 
+// код клавишы закрытия popup
+const keyClose = "Escape";
 
 // открытие/закрытие модального окна
 const toggleModalWindow = (modalWindow) => {
   const formPopupElement = modalWindow.querySelector('.popup__form');
-  resetValid(formPopupElement);
   if (modalWindow.classList.contains('popup_opened')) {
     modalWindow.classList.remove('popup_opened');
     modalWindow.removeEventListener('click', closePopupOverlay);
     document.removeEventListener('keydown', closePopupEscape);
+    formPopupElement ? resetValid(formPopupElement) : null;
     if (modalWindow.classList.contains('popup-image')) {
       clearImageDescription();
     }
@@ -77,10 +79,10 @@ const closePopupOverlay = evt => {
   }
 }
 
-// закрытие окна по клавише Escape
+// закрытие окна по клавише
 const closePopupEscape = evt => {
   const popup = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape') {
+  if (evt.key === keyClose) {
     toggleModalWindow(popup);
   }
 }
