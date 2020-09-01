@@ -55,8 +55,14 @@ const placeContainer = document.querySelector('.places');
 
 // открытие/закрытие модального окна
 const toggleModalWindow = (modalWindow) => {
-  modalWindow.classList.toggle('popup_opened');
+  if (modalWindow.classList.contains('popup_opened')) {
+    modalWindow.classList.remove('popup_opened');
+  } else {
+    modalWindow.classList.add('popup_opened');
+  }
 }
+
+
 
 // сохранение данных о профиле
 const saveProfile = evt => {
