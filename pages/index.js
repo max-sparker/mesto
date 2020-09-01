@@ -50,8 +50,11 @@ const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
 // контейнер для карточек
 const placeContainer = document.querySelector('.places');
 
+
 // открытие/закрытие модального окна
 const toggleModalWindow = (modalWindow) => {
+  const formPopupElement = modalWindow.querySelector('.popup__form');
+  resetValid(formPopupElement);
   if (modalWindow.classList.contains('popup_opened')) {
     modalWindow.classList.remove('popup_opened');
     modalWindow.removeEventListener('click', closePopupOverlay);

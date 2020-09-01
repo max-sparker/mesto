@@ -1,3 +1,12 @@
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__btn',
+  inactiveButtonClass: 'popup__btn_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+
 // отображение ошибок
 const showInputError = (formElement, inputElement, errorMessage, {inputErrorClass, errorClass}) => {
   const errorElement = formElement.querySelector(`#${inputElement.name}-input-error`);
@@ -22,6 +31,15 @@ const checkInputValidity = (formElement, inputElement, rest) => {
     hideInputError(formElement, inputElement, rest);
   }
 };
+
+const resetValid = (formElement) => {
+   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+   const buttonElement = formElement.querySelector(config.submitButtonSelector);
+   toggleButtonState(inputList, buttonElement, config);
+   inputList.forEach((inputElement) => {
+     hideInputError(formElement, inputElement, config);
+   })
+}
 
 // есть ли поле, что не прошло вадидацию
 const hasInvalidInput = (inputList) => {
@@ -64,11 +82,4 @@ const enableValidation = ({formSelector, ...rest}) => {
   });
 }
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__btn',
-  inactiveButtonClass: 'popup__btn_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+enableValidation(config);
