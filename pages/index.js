@@ -60,7 +60,10 @@ const toggleModalWindow = (modalWindow) => {
     modalWindow.classList.remove('popup_opened');
     modalWindow.removeEventListener('click', closePopupOverlay);
     document.removeEventListener('keydown', closePopupEscape);
-    formPopupElement ? resetValid(formPopupElement) : null;
+    // если есть в модальном окне форма, сбрасываем форму и кнопку
+    if (formPopupElement) {
+      resetForm(formPopupElement);
+    }
     if (modalWindow.classList.contains('popup-image')) {
       clearImageDescription();
     }
@@ -189,6 +192,14 @@ const clearImageDescription = () => {
   popupImageElement.src = '';
   popupImageElement.alt = '';
   popupImageDescription.textContent = '';
+}
+
+// сброс формы
+const resetForm = (formElement) => {
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  formElement.reset();
+  buttonElement.setAttribute('disabled', '');
+  buttonElement.classList.add(config.inactiveButtonClass);
 }
 
 popupImageCloseButton.addEventListener('click', () => {

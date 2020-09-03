@@ -32,15 +32,6 @@ const checkInputValidity = (formElement, inputElement, rest) => {
   }
 };
 
-const resetValid = (formElement) => {
-   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-   const buttonElement = formElement.querySelector(config.submitButtonSelector);
-   toggleButtonState(inputList, buttonElement, config);
-   inputList.forEach((inputElement) => {
-     hideInputError(formElement, inputElement, config);
-   })
-}
-
 // есть ли поле, что не прошло вадидацию
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
