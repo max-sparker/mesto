@@ -1,3 +1,5 @@
+import Card from './Card';
+
 const initialCards = [
   {
     name: 'Архыз',
