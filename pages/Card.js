@@ -2,9 +2,17 @@ export default class Card {
 
   static _template = document.querySelector('#cardTemplate').content;
 
-  constructor(name, link) {
+  constructor(name, link, popupImage, toggleModalWindow, setImageDescription) {
     this._name = name;
     this._link = link;
+    this._popupImage = popupImage;
+    this._toggleModalWindow = toggleModalWindow;
+    this._setImageDescription = setImageDescription;
+  }
+
+  _fullImageClickHandler = () => {
+    this._toggleModalWindow(this._popupImage);
+    this._setImageDescription(this._cardImage);
   }
 
   _likeClickHandler = () => {
@@ -21,10 +29,10 @@ export default class Card {
     this._cardLikeButton.addEventListener('click', this._likeClickHandler);
     this._cardDeleteButton = this._view.querySelector('.card__remove-btn');
     this._cardDeleteButton.addEventListener('click', this._deleteClickHandler);
-
-    const cardImage = this._view.querySelector('.card__image');
-    cardImage.src = this._link;
-    cardImage.alt = `Фото ${this._name}`;
+    this._cardImage = this._view.querySelector('.card__image');
+    this._cardImage.src = this._link;
+    this._cardImage.alt = `Фото ${this._name}`;
+    this._cardImage.addEventListener('click', this._fullImageClickHandler);
     const cardName = this._view.querySelector('.card__name');
     cardName.textContent = this._name;
 

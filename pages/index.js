@@ -112,63 +112,13 @@ popupProfileCloseButton.addEventListener('click', () => {
 
 formProfileElement.addEventListener('submit', saveProfile);
 
-
-// демонстрация изображения
-// const handlePreviewPicture = (evt) => {
-//   popupImageElement.src = evt.target.src;
-//   popupImageElement.alt = `Фото ${evt.target.alt}`;
-//   popupImageDescription.textContent = evt.target.alt;
-//   toggleModalWindow(popupImage);
-// }
-
-// // генерация шаблона карточки
-// const getCardElement = (name, link) => {
-//   const cardElement = document.querySelector('#cardTemplate').content.cloneNode(true);
-//
-//   const cardImage = cardElement.querySelector('.card__image');
-//   cardImage.src = link;
-//   cardImage.alt = `Фото ${name}`;
-//
-//   cardImage.addEventListener('click', handlePreviewPicture);
-//
-//   const cardName = cardElement.querySelector('.card__name');
-//   cardName.textContent = name;
-//
-//   const deleteButton = cardElement.querySelector('.card__remove-btn');
-//   deleteButton.addEventListener('click', handleDeleteCard);
-//
-//   const likeButton = cardElement.querySelector('.card__like-btn');
-//   likeButton.addEventListener('click', handleLikeIcon);
-//
-//   return cardElement;
-// }
-
 // создание карточки
 const createCard = () => {
   const cardTitle = formCardElement.querySelector('.popup__input_type_placename').value;
   const cardLink = formCardElement.querySelector('.popup__input_type_placelink').value;
-  const cardElement = new Card(cardTitle, cardLink);
+  const cardElement = new Card(cardTitle, cardLink, popupImage, toggleModalWindow, setImageDescription);
   cardElement.render(placeContainer);
-  //renderCard(getCardElement(cardTitle, cardLink));
 }
-
-// добавление первоначальных данных
-// const addInitialCards = () => {
-//   initialCards.forEach((card) => {
-//     let cardElement = getCardElement (card.name, card.link);
-//     renderCard(cardElement);
-//   })
-// }
-
-// добавление первоначальных данных объектами
-const addInitialCards = () => {
-  initialCards.forEach((card) => {
-    const cardElement = new Card (card.name, card.link);
-    cardElement.render(placeContainer);
-  })
-}
-
-addInitialCards();
 
 
 popupCardOpenButton.addEventListener('click', () => {
@@ -184,6 +134,13 @@ formCardElement.addEventListener('submit', evt => {
   formCardElement.reset();
   toggleModalWindow(popupCard);
 })
+
+// добавление данных об изображении
+const setImageDescription = (image) => {
+   popupImageElement.src = image.src;
+   popupImageElement.alt = `Фото ${image.alt}`;
+   popupImageDescription.textContent = image.alt;
+}
 
 // очистка данных об изображении
 const clearImageDescription = () => {
@@ -204,3 +161,13 @@ popupImageCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupImage);
   clearImageDescription();
 });
+
+// добавление первоначальных данных объектами
+const addInitialCards = () => {
+  initialCards.forEach((card) => {
+    const cardElement = new Card (card.name, card.link, popupImage, toggleModalWindow, setImageDescription);
+    cardElement.render(placeContainer);
+  })
+}
+
+addInitialCards();
