@@ -117,11 +117,6 @@ formProfileElement.addEventListener('submit', saveProfile);
 //   placeContainer.prepend(card);
 // }
 
-// постановка лайка
-// const handleLikeIcon = (evt) => {
-//   evt.target.classList.toggle('card__like-btn_liked');
-// }
-
 // удаление карточки
 // const handleDeleteCard = (evt) => {
 //   const card = evt.target.closest('.card');

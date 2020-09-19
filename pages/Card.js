@@ -7,13 +7,22 @@ export default class Card {
     this._link = link;
   }
 
+  _likeClickHandler = () => {
+    this._cardLikeBtn.classList.toggle('card__like-btn_liked');
+  }
+
   render = (container) => {
     this._view = Card._template.cloneNode(true);
+    this._cardLikeBtn = this._view.querySelector('.card__like-btn');
+    this._cardLikeBtn.addEventListener('click', this._likeClickHandler);
+
     const cardImage = this._view.querySelector('.card__image');
     cardImage.src = this._link;
     cardImage.alt = `Фото ${this._name}`;
     const cardName = this._view.querySelector('.card__name');
     cardName.textContent = this._name;
+
+
     container.prepend(this._view);
   }
 
