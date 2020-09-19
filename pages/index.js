@@ -112,16 +112,6 @@ popupProfileCloseButton.addEventListener('click', () => {
 
 formProfileElement.addEventListener('submit', saveProfile);
 
-// рендер карточки
-// const renderCard = card => {
-//   placeContainer.prepend(card);
-// }
-
-// удаление карточки
-// const handleDeleteCard = (evt) => {
-//   const card = evt.target.closest('.card');
-//   card.remove();
-// }
 
 // демонстрация изображения
 // const handlePreviewPicture = (evt) => {

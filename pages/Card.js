@@ -8,13 +8,19 @@ export default class Card {
   }
 
   _likeClickHandler = () => {
-    this._cardLikeBtn.classList.toggle('card__like-btn_liked');
+    this._cardLikeButton.classList.toggle('card__like-btn_liked');
+  }
+
+  _deleteClickHandler = () => {
+    this._view.remove();
   }
 
   render = (container) => {
-    this._view = Card._template.cloneNode(true);
-    this._cardLikeBtn = this._view.querySelector('.card__like-btn');
-    this._cardLikeBtn.addEventListener('click', this._likeClickHandler);
+    this._view = Card._template.cloneNode(true).children[0];
+    this._cardLikeButton = this._view.querySelector('.card__like-btn');
+    this._cardLikeButton.addEventListener('click', this._likeClickHandler);
+    this._cardDeleteButton = this._view.querySelector('.card__remove-btn');
+    this._cardDeleteButton.addEventListener('click', this._deleteClickHandler);
 
     const cardImage = this._view.querySelector('.card__image');
     cardImage.src = this._link;
