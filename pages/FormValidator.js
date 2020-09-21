@@ -17,4 +17,12 @@ export default class FormValidator {
     errorElement.classList.add(this._errorClass);
   }
 
+  // скрытие ошибок
+  _hideInputError = (inputElement) => {
+    const errorElement = formElement.querySelector(`#${inputElement.name}-input-error`);
+    inputElement.classList.remove(this._inputErrorClass);
+    errorElement.classList.remove(this._errorClass);
+    errorElement.textContent = '';
+  }
+
 }
