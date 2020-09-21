@@ -28,7 +28,7 @@ export default class Card {
     this._cardImage.addEventListener('click', this._fullImageClickHandler);
   }
 
-  render = (container) => {
+  _getTemplate = () => {
     this._view = this._template.cloneNode(true).children[0];
     this._cardLikeButton = this._view.querySelector('.card__like-btn');
     this._cardDeleteButton = this._view.querySelector('.card__remove-btn');
@@ -37,6 +37,10 @@ export default class Card {
     this._cardImage.alt = `Фото ${this._name}`;
     this._cardName = this._view.querySelector('.card__name');
     this._cardName.textContent = this._name;
+  }
+
+  render = (container) => {
+    this._getTemplate();
     this._setEventListeners();
     container.prepend(this._view);
   }
