@@ -33,15 +33,15 @@ const keyClose = "Escape";
 
 // открытие/закрытие модального окна
 const toggleModalWindow = (modalWindow) => {
-  const formPopupElement = modalWindow.querySelector('.popup__form');
+  //const formPopupElement = modalWindow.querySelector('.popup__form');
   if (modalWindow.classList.contains('popup_opened')) {
     modalWindow.classList.remove('popup_opened');
     modalWindow.removeEventListener('click', closePopupOverlay);
     document.removeEventListener('keydown', closePopupEscape);
     // если есть в модальном окне форма, сбрасываем форму и кнопку
-    if (formPopupElement) {
-      resetForm(formPopupElement);
-    }
+    // if (formPopupElement) {
+    //   formPopupElement.resetForm();
+    // }
     if (modalWindow.classList.contains('popup-image')) {
       clearImageDescription();
     }
@@ -79,6 +79,7 @@ const saveProfile = evt => {
 popupProfileOpenButton.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputDescription.value = profileDescription.textContent;
+  validateProfileForm.resetForm();
   toggleModalWindow(popupProfile);
 });
 
@@ -125,14 +126,6 @@ const clearImageDescription = () => {
   popupImageDescription.textContent = '';
 }
 
-// сброс формы
-const resetForm = (formElement) => {
-  const buttonElement = formElement.querySelector(config.submitButtonSelector);
-  formElement.reset();
-  buttonElement.setAttribute('disabled', '');
-  buttonElement.classList.add(config.inactiveButtonClass);
-}
-
 popupImageCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupImage);
   clearImageDescription();
@@ -147,3 +140,9 @@ const addInitialCards = () => {
 }
 
 addInitialCards();
+
+const validateProfileForm = new FormValidator(formConfig, formProfileElement);
+validateProfileForm.enableValidation();
+const validateCardForm = new FormValidator(formConfig, formCardElement);
+validateCardForm.enableValidation();
+

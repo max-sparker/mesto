@@ -7,6 +7,8 @@ export default class FormValidator {
     this._inactiveButtonClass = formConfig.inactiveButtonClass;
     this._inputErrorClass = formConfig.inputErrorClass;
     this._errorClass = formConfig.errorClass;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
   // отображение ошибок
@@ -54,17 +56,29 @@ export default class FormValidator {
 
   // установка слушателя
   _setEventListeners = () => {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._toggleButtonState(inputList, buttonElement);
-    inputList.forEach((inputElement) => {
+    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
   }
 
+  // сброс элементов формы
+  resetForm = () => {
+    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._inputList.forEach((inputElement) => {
+      this._checkInputValidity(inputElement);
+    });
+  }
 
+  // метод включения валидации формы
+  enableValidation = () => {
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    this._setEventListeners();
+  }
 
 }
