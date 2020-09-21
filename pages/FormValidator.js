@@ -67,9 +67,10 @@ export default class FormValidator {
 
   // сброс элементов формы
   resetForm = () => {
+    //this._formElement.reset();
     this._toggleButtonState(this._inputList, this._buttonElement);
     this._inputList.forEach((inputElement) => {
-      this._checkInputValidity(inputElement);
+      this._hideInputError(inputElement);
     });
   }
 

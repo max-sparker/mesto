@@ -33,15 +33,10 @@ const keyClose = "Escape";
 
 // открытие/закрытие модального окна
 const toggleModalWindow = (modalWindow) => {
-  //const formPopupElement = modalWindow.querySelector('.popup__form');
   if (modalWindow.classList.contains('popup_opened')) {
     modalWindow.classList.remove('popup_opened');
     modalWindow.removeEventListener('click', closePopupOverlay);
     document.removeEventListener('keydown', closePopupEscape);
-    // если есть в модальном окне форма, сбрасываем форму и кнопку
-    // if (formPopupElement) {
-    //   formPopupElement.resetForm();
-    // }
     if (modalWindow.classList.contains('popup-image')) {
       clearImageDescription();
     }
@@ -99,6 +94,8 @@ const createCard = () => {
 
 
 popupCardOpenButton.addEventListener('click', () => {
+  formCardElement.reset();
+  validateCardForm.resetForm();
   toggleModalWindow(popupCard);
 });
 popupCardCloseButton.addEventListener('click', () => {
@@ -108,7 +105,6 @@ popupCardCloseButton.addEventListener('click', () => {
 formCardElement.addEventListener('submit', evt => {
   evt.preventDefault();
   createCard();
-  formCardElement.reset();
   toggleModalWindow(popupCard);
 })
 
@@ -128,7 +124,6 @@ const clearImageDescription = () => {
 
 popupImageCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupImage);
-  clearImageDescription();
 });
 
 // добавление первоначальных данных объектами
