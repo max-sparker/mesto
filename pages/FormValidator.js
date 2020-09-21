@@ -11,7 +11,7 @@ export default class FormValidator {
 
   // отображение ошибок
   _showInputError = (inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`#${inputElement.name}-input-error`);
+    const errorElement = this._formElement.querySelector(`#${inputElement.name}-input-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
@@ -19,7 +19,7 @@ export default class FormValidator {
 
   // скрытие ошибок
   _hideInputError = (inputElement) => {
-    const errorElement = formElement.querySelector(`#${inputElement.name}-input-error`);
+    const errorElement = this._formElement.querySelector(`#${inputElement.name}-input-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
@@ -51,5 +51,20 @@ export default class FormValidator {
       buttonElement.removeAttribute('disabled');
     }
   }
+
+  // установка слушателя
+  _setEventListeners = () => {
+    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._toggleButtonState(inputList, buttonElement);
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState(inputList, buttonElement);
+      });
+    });
+  }
+
+
 
 }
