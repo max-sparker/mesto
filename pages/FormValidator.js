@@ -8,4 +8,13 @@ export default class FormValidator {
     this._inputErrorClass = formConfig.inputErrorClass;
     this._errorClass = formConfig.errorClass;
   }
+
+  // отображение ошибок
+  _showInputError = (inputElement, errorMessage) => {
+    const errorElement = formElement.querySelector(`#${inputElement.name}-input-error`);
+    inputElement.classList.add(this._inputErrorClass);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(this._errorClass);
+  }
+
 }
