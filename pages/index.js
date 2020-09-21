@@ -1,6 +1,5 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-
 import {initialCards, formConfig} from './constants.js';
 
 // Профиль
@@ -27,6 +26,9 @@ const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
 
 // контейнер для карточек
 const placeContainer = document.querySelector('.places');
+
+// селектор template карточки
+const selectorTemplate = document.querySelector('#cardTemplate').content;
 
 // код клавишы закрытия popup
 const keyClose = "Escape";
@@ -88,16 +90,16 @@ formProfileElement.addEventListener('submit', saveProfile);
 const createCard = () => {
   const cardTitle = formCardElement.querySelector('.popup__input_type_placename').value;
   const cardLink = formCardElement.querySelector('.popup__input_type_placelink').value;
-  const cardElement = new Card(cardTitle, cardLink, popupImage, toggleModalWindow, setImageDescription);
+  const cardElement = new Card(cardTitle, cardLink, selectorTemplate, popupImage, toggleModalWindow, setImageDescription);
   cardElement.render(placeContainer);
 }
-
 
 popupCardOpenButton.addEventListener('click', () => {
   formCardElement.reset();
   validateCardForm.resetForm();
   toggleModalWindow(popupCard);
 });
+
 popupCardCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupCard);
 });
@@ -129,7 +131,7 @@ popupImageCloseButton.addEventListener('click', () => {
 // добавление первоначальных данных объектами
 const addInitialCards = () => {
   initialCards.forEach((card) => {
-    const cardElement = new Card (card.name, card.link, popupImage, toggleModalWindow, setImageDescription);
+    const cardElement = new Card (card.name, card.link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription);
     cardElement.render(placeContainer);
   })
 }
@@ -140,4 +142,3 @@ const validateProfileForm = new FormValidator(formConfig, formProfileElement);
 validateProfileForm.enableValidation();
 const validateCardForm = new FormValidator(formConfig, formCardElement);
 validateCardForm.enableValidation();
-

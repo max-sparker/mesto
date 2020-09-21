@@ -1,7 +1,6 @@
 export default class FormValidator {
   constructor(formConfig, formElement) {
     this._formElement = formElement;
-    this._formSelector = formConfig.formSelector;
     this._inputSelector = formConfig.inputSelector;
     this._submitButtonSelector = formConfig.submitButtonSelector;
     this._inactiveButtonClass = formConfig.inactiveButtonClass;
@@ -67,7 +66,6 @@ export default class FormValidator {
 
   // сброс элементов формы
   resetForm = () => {
-    //this._formElement.reset();
     this._toggleButtonState(this._inputList, this._buttonElement);
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
