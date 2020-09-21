@@ -34,5 +34,22 @@ export default class FormValidator {
     }
   }
 
+  // есть ли поле, что не прошло вадидацию
+  _hasInvalidInput = (inputList) => {
+    return inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
+    })
+  }
+
+  // состояние кнопки
+  _toggleButtonState = (inputList, buttonElement) => {
+    if (this._hasInvalidInput(inputList)) {
+      buttonElement.classList.add(this._inactiveButtonClass);
+      buttonElement.setAttribute('disabled', '');
+    } else {
+      buttonElement.classList.remove(this._inactiveButtonClass);
+      buttonElement.removeAttribute('disabled');
+    }
+  }
 
 }
