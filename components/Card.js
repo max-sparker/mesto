@@ -40,10 +40,10 @@ export default class Card {
     this._cardName.textContent = this._name;
   }
 
-  render = (container) => {
+  render = () => {
     this._getTemplate();
     this._setEventListeners();
-    container.prepend(this._view);
+    return this._view;
   }
 
 }

@@ -90,8 +90,8 @@ formProfileElement.addEventListener('submit', saveProfile);
 const createCard = () => {
   const cardTitle = formCardElement.querySelector('.popup__input_type_placename').value;
   const cardLink = formCardElement.querySelector('.popup__input_type_placelink').value;
-  const cardElement = new Card(cardTitle, cardLink, selectorTemplate, popupImage, toggleModalWindow, setImageDescription);
-  cardElement.render(placeContainer);
+  const cardElement = new Card(cardTitle, cardLink, selectorTemplate, popupImage, toggleModalWindow, setImageDescription).render();
+  placeContainer.prepend(cardElement);
 }
 
 popupCardOpenButton.addEventListener('click', () => {
@@ -131,8 +131,8 @@ popupImageCloseButton.addEventListener('click', () => {
 // добавление первоначальных данных объектами
 const addInitialCards = () => {
   initialCards.forEach((card) => {
-    const cardElement = new Card (card.name, card.link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription);
-    cardElement.render(placeContainer);
+    const cardElement = new Card (card.name, card.link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription).render();
+    placeContainer.prepend(cardElement);
   })
 }
 
