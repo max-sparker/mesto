@@ -17,6 +17,8 @@ const popupCard = document.querySelector('.popup-card');
 const popupCardOpenButton = document.querySelector('.profile__add-btn');
 const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
 const formCardElement = popupCard.querySelector('.popup__form');
+const cardTitle = formCardElement.querySelector('.popup__input_type_placename');
+const cardLink = formCardElement.querySelector('.popup__input_type_placelink');
 
 // Изображение
 const popupImage = document.querySelector('.popup-image');
@@ -85,9 +87,14 @@ formProfileElement.addEventListener('submit', saveProfile);
 
 // создание карточки
 const createCard = () => {
-  const cardTitle = formCardElement.querySelector('.popup__input_type_placename').value;
-  const cardLink = formCardElement.querySelector('.popup__input_type_placelink').value;
-  const cardElement = new Card(cardTitle, cardLink, selectorTemplate, popupImage, toggleModalWindow, setImageDescription).render();
+  const cardElement = new Card(
+    cardTitle.value,
+    cardLink.value,
+    selectorTemplate,
+    popupImage,
+    toggleModalWindow,
+    setImageDescription
+  ).render();
   placeContainer.prepend(cardElement);
 }
 
