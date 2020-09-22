@@ -20,6 +20,7 @@ export default class Card {
 
   _deleteClickHandler = () => {
     this._view.remove();
+    this._view = null;
   }
 
   _setEventListeners = () => {
