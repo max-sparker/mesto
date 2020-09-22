@@ -39,9 +39,6 @@ const toggleModalWindow = (modalWindow) => {
     modalWindow.classList.remove('popup_opened');
     modalWindow.removeEventListener('click', closePopupOverlay);
     document.removeEventListener('keydown', closePopupEscape);
-    if (modalWindow.classList.contains('popup-image')) {
-      clearImageDescription();
-    }
   } else {
     modalWindow.classList.add('popup_opened');
     modalWindow.addEventListener('click', closePopupOverlay);
@@ -115,13 +112,6 @@ const setImageDescription = (image) => {
    popupImageElement.src = image.src;
    popupImageElement.alt = `Фото ${image.alt}`;
    popupImageDescription.textContent = image.alt;
-}
-
-// очистка данных об изображении
-const clearImageDescription = () => {
-  popupImageElement.src = '';
-  popupImageElement.alt = '';
-  popupImageDescription.textContent = '';
 }
 
 popupImageCloseButton.addEventListener('click', () => {
