@@ -33,3 +33,33 @@ export const formConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
+
+// Профиль
+export const popupProfile = document.querySelector('.popup-profile');
+export const popupProfileOpenButton = document.querySelector('.profile__edit-btn');
+export const popupProfileCloseButton = popupProfile.querySelector('.popup__close-btn');
+export const profileName = document.querySelector('.profile__name');
+export const profileDescription = document.querySelector('.profile__description');
+export const formProfileElement = popupProfile.querySelector('.popup__form');
+export const profileInputName = formProfileElement.querySelector('.popup__input_type_username');
+export const profileInputDescription = formProfileElement.querySelector('.popup__input_type_description');
+
+// Карточки
+export const popupCard = document.querySelector('.popup-card');
+export const popupCardOpenButton = document.querySelector('.profile__add-btn');
+export const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
+export const formCardElement = popupCard.querySelector('.popup__form');
+export const cardTitle = formCardElement.querySelector('.popup__input_type_placename');
+export const cardLink = formCardElement.querySelector('.popup__input_type_placelink');
+
+// Изображение
+export const popupImage = document.querySelector('.popup-image');
+export const popupImageElement = popupImage.querySelector('.popup-image__image');
+export const popupImageDescription = popupImage.querySelector('.popup-image__desc');
+export const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
+
+// селектор template карточки
+export const selectorTemplate = document.querySelector('#cardTemplate').content;
+
+// код клавишы закрытия popup
+export const keyClose = "Escape";

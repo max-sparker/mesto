@@ -1,41 +1,29 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
-import {initialCards, formConfig} from '../utils/constants.js';
-
-
-// Профиль
-const popupProfile = document.querySelector('.popup-profile');
-const popupProfileOpenButton = document.querySelector('.profile__edit-btn');
-const popupProfileCloseButton = popupProfile.querySelector('.popup__close-btn');
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const formProfileElement = popupProfile.querySelector('.popup__form');
-const profileInputName = formProfileElement.querySelector('.popup__input_type_username');
-const profileInputDescription = formProfileElement.querySelector('.popup__input_type_description');
-
-// Карточки
-const popupCard = document.querySelector('.popup-card');
-const popupCardOpenButton = document.querySelector('.profile__add-btn');
-const popupCardCloseButton = popupCard.querySelector('.popup__close-btn');
-const formCardElement = popupCard.querySelector('.popup__form');
-const cardTitle = formCardElement.querySelector('.popup__input_type_placename');
-const cardLink = formCardElement.querySelector('.popup__input_type_placelink');
-
-// Изображение
-const popupImage = document.querySelector('.popup-image');
-const popupImageElement = popupImage.querySelector('.popup-image__image');
-const popupImageDescription = popupImage.querySelector('.popup-image__desc');
-const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
-
-// контейнер для карточек
-const placeContainer = document.querySelector('.places');
-
-// селектор template карточки
-const selectorTemplate = document.querySelector('#cardTemplate').content;
-
-// код клавишы закрытия popup
-const keyClose = "Escape";
+import {
+  initialCards,
+  formConfig,
+  keyClose,
+  selectorTemplate,
+  profileName,
+  profileDescription,
+  profileInputName,
+  profileInputDescription,
+  popupProfile,
+  popupProfileOpenButton,
+  popupProfileCloseButton,
+  formProfileElement,
+  popupImage,
+  popupImageCloseButton,
+  popupCard,
+  popupCardOpenButton,
+  popupCardCloseButton,
+  formCardElement
+} from '../utils/constants.js';
+import {
+  setImageDescription
+} from "../utils/utils.js";
 
 // открытие/закрытие модального окна
 const toggleModalWindow = (modalWindow) => {
@@ -86,13 +74,6 @@ popupProfileCloseButton.addEventListener('click', () => {
 });
 
 formProfileElement.addEventListener('submit', saveProfile);
-
-// добавление данных об изображении
-const setImageDescription = (image) => {
-  popupImageElement.src = image.src;
-  popupImageElement.alt = `Фото ${image.alt}`;
-  popupImageDescription.textContent = image.alt;
-}
 
 const cardList = new Section({
   items: initialCards,
