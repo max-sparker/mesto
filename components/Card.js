@@ -1,8 +1,9 @@
 export default class Card {
 
-  constructor(name, link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription) {
-    this._name = name;
-    this._link = link;
+  //constructor(name, link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription) {
+  constructor(data, selectorTemplate, popupImage, toggleModalWindow, setImageDescription) {
+    this._name = data.name;
+    this._link = data.link;
     this._template = selectorTemplate;
     this._popupImage = popupImage;
     this._toggleModalWindow = toggleModalWindow;

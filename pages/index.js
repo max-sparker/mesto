@@ -1,6 +1,8 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
 import {initialCards, formConfig} from '../utils/constants.js';
+
 
 // Профиль
 const popupProfile = document.querySelector('.popup-profile');
@@ -85,18 +87,36 @@ popupProfileCloseButton.addEventListener('click', () => {
 
 formProfileElement.addEventListener('submit', saveProfile);
 
-// создание карточки
-const createCard = () => {
-  const cardElement = new Card(
-    cardTitle.value,
-    cardLink.value,
-    selectorTemplate,
-    popupImage,
-    toggleModalWindow,
-    setImageDescription
-  ).render();
-  placeContainer.prepend(cardElement);
+// добавление данных об изображении
+const setImageDescription = (image) => {
+  popupImageElement.src = image.src;
+  popupImageElement.alt = `Фото ${image.alt}`;
+  popupImageDescription.textContent = image.alt;
 }
+
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, selectorTemplate, popupImage, toggleModalWindow, setImageDescription);
+    const cardElement = card.render();
+    cardList.addItem(cardElement);
+  }
+}, '.places');
+
+cardList.renderItems();
+
+// создание карточки
+// const createCard = () => {
+//   const cardElement = new Card(
+//     cardTitle.value,
+//     cardLink.value,
+//     selectorTemplate,
+//     popupImage,
+//     toggleModalWindow,
+//     setImageDescription
+//   ).render();
+//   placeContainer.prepend(cardElement);
+// }
 
 popupCardOpenButton.addEventListener('click', () => {
   formCardElement.reset();
@@ -114,26 +134,21 @@ formCardElement.addEventListener('submit', evt => {
   toggleModalWindow(popupCard);
 })
 
-// добавление данных об изображении
-const setImageDescription = (image) => {
-   popupImageElement.src = image.src;
-   popupImageElement.alt = `Фото ${image.alt}`;
-   popupImageDescription.textContent = image.alt;
-}
+
 
 popupImageCloseButton.addEventListener('click', () => {
   toggleModalWindow(popupImage);
 });
 
 // добавление первоначальных данных объектами
-const addInitialCards = () => {
-  initialCards.forEach((card) => {
-    const cardElement = new Card (card.name, card.link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription).render();
-    placeContainer.prepend(cardElement);
-  })
-}
-
-addInitialCards();
+// const addInitialCards = () => {
+//   initialCards.forEach((card) => {
+//     const cardElement = new Card (card.name, card.link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription).render();
+//     placeContainer.prepend(cardElement);
+//   })
+// }
+//
+// addInitialCards();
 
 const validateProfileForm = new FormValidator(formConfig, formProfileElement);
 validateProfileForm.enableValidation();
