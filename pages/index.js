@@ -62,7 +62,16 @@ const cardList = new Section({
 
 cardList.renderItems();
 
+const popupAddCard = new PopupWithForm('.popup-card', (data) => {
+  cardList.addItem(createCard({name: data.placename, link: data.placelink}));
+});
 
+popupAddCard.setEventListeners();
+
+popupCardOpenButton.addEventListener('click', () => {
+  validateCardForm.resetForm();
+  popupAddCard.open();
+});
 
 const validateProfileForm = new FormValidator(formConfig, formProfileElement);
 validateProfileForm.enableValidation();
