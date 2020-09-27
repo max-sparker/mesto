@@ -1,10 +1,11 @@
 export default class Card {
 
   //constructor(name, link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription) {
-  constructor(data, selectorTemplate, popupImage, toggleModalWindow, setImageDescription) {
+  constructor(data, selectorTemplate, handleCardClick, popupImage, toggleModalWindow, setImageDescription) {
     this._name = data.name;
     this._link = data.link;
     this._template = selectorTemplate;
+    this._handleCardClick = handleCardClick;
     this._popupImage = popupImage;
     this._toggleModalWindow = toggleModalWindow;
     this._setImageDescription = setImageDescription;
@@ -27,7 +28,12 @@ export default class Card {
   _setEventListeners = () => {
     this._cardLikeButton.addEventListener('click', this._likeClickHandler);
     this._cardDeleteButton.addEventListener('click', this._deleteClickHandler);
-    this._cardImage.addEventListener('click', this._fullImageClickHandler);
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick({
+        name: this._name,
+        link: this._link
+      })
+    });
   }
 
   _getTemplate = () => {

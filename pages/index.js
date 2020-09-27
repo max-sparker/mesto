@@ -1,5 +1,6 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import {
   initialCards,
@@ -14,7 +15,6 @@ import {
   popupProfileOpenButton,
   popupProfileCloseButton,
   formProfileElement,
-  popupImage,
   popupImageCloseButton,
   popupCard,
   popupCardOpenButton,
@@ -46,13 +46,13 @@ const closePopupOverlay = evt => {
   }
 }
 
-// закрытие окна по клавише
-const closePopupEscape = evt => {
-  const popup = document.querySelector('.popup_opened');
-  if (evt.key === keyClose) {
-    toggleModalWindow(popup);
-  }
-}
+// // закрытие окна по клавише
+// const closePopupEscape = evt => {
+//   const popup = document.querySelector('.popup_opened');
+//   if (evt.key === keyClose) {
+//     toggleModalWindow(popup);
+//   }
+// }
 
 // сохранение данных о профиле
 const saveProfile = evt => {
@@ -75,16 +75,25 @@ popupProfileCloseButton.addEventListener('click', () => {
 
 formProfileElement.addEventListener('submit', saveProfile);
 
+const popupImage = new PopupWithImage('.popup-image');
+popupImage.setEventListeners();
+
+const handleCardClick = (item) => {
+  popupImage.open(item);
+}
+
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, selectorTemplate, popupImage, toggleModalWindow, setImageDescription);
+    const card = new Card(item, selectorTemplate, handleCardClick, popupImage, toggleModalWindow, setImageDescription);
     const cardElement = card.render();
     cardList.addItem(cardElement);
   }
 }, '.places');
 
 cardList.renderItems();
+
+
 
 // создание карточки
 // const createCard = () => {
@@ -116,10 +125,9 @@ formCardElement.addEventListener('submit', evt => {
 })
 
 
-
-popupImageCloseButton.addEventListener('click', () => {
-  toggleModalWindow(popupImage);
-});
+// popupImageCloseButton.addEventListener('click', () => {
+//   toggleModalWindow(popupImage);
+// });
 
 // добавление первоначальных данных объектами
 // const addInitialCards = () => {
@@ -130,6 +138,8 @@ popupImageCloseButton.addEventListener('click', () => {
 // }
 //
 // addInitialCards();
+
+
 
 const validateProfileForm = new FormValidator(formConfig, formProfileElement);
 validateProfileForm.enableValidation();
