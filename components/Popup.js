@@ -1,6 +1,6 @@
 import {keyClose} from "../utils/constants.js";
 
-class Popup {
+export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
   }
