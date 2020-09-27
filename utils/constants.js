@@ -52,12 +52,6 @@ export const formCardElement = popupCard.querySelector('.popup__form');
 export const cardTitle = formCardElement.querySelector('.popup__input_type_placename');
 export const cardLink = formCardElement.querySelector('.popup__input_type_placelink');
 
-// Изображение
-export const popupImage = document.querySelector('.popup-image');
-export const popupImageElement = popupImage.querySelector('.popup-image__image');
-export const popupImageDescription = popupImage.querySelector('.popup-image__desc');
-export const popupImageCloseButton = popupImage.querySelector('.popup__close-btn');
-
 // селектор template карточки
 export const selectorTemplate = document.querySelector('#cardTemplate').content;
 

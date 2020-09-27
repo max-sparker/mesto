@@ -5,7 +5,6 @@ import Section from '../components/Section.js';
 import {
   initialCards,
   formConfig,
-  keyClose,
   selectorTemplate,
   profileName,
   profileDescription,
@@ -15,26 +14,21 @@ import {
   popupProfileOpenButton,
   popupProfileCloseButton,
   formProfileElement,
-  popupImageCloseButton,
   popupCard,
   popupCardOpenButton,
   popupCardCloseButton,
   formCardElement
 } from '../utils/constants.js';
-import {
-  setImageDescription
-} from "../utils/utils.js";
+
 
 // открытие/закрытие модального окна
 const toggleModalWindow = (modalWindow) => {
   if (modalWindow.classList.contains('popup_opened')) {
     modalWindow.classList.remove('popup_opened');
     modalWindow.removeEventListener('click', closePopupOverlay);
-    document.removeEventListener('keydown', closePopupEscape);
   } else {
     modalWindow.classList.add('popup_opened');
     modalWindow.addEventListener('click', closePopupOverlay);
-    document.addEventListener('keydown', closePopupEscape);
   }
 }
 
@@ -85,15 +79,13 @@ const handleCardClick = (item) => {
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, selectorTemplate, handleCardClick, popupImage, toggleModalWindow, setImageDescription);
+    const card = new Card(item, selectorTemplate, handleCardClick);
     const cardElement = card.render();
     cardList.addItem(cardElement);
   }
 }, '.places');
 
 cardList.renderItems();
-
-
 
 // создание карточки
 // const createCard = () => {

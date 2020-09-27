@@ -1,19 +1,10 @@
 export default class Card {
 
-  //constructor(name, link, selectorTemplate, popupImage, toggleModalWindow, setImageDescription) {
-  constructor(data, selectorTemplate, handleCardClick, popupImage, toggleModalWindow, setImageDescription) {
+  constructor(data, selectorTemplate, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._template = selectorTemplate;
     this._handleCardClick = handleCardClick;
-    this._popupImage = popupImage;
-    this._toggleModalWindow = toggleModalWindow;
-    this._setImageDescription = setImageDescription;
-  }
-
-  _fullImageClickHandler = () => {
-    this._toggleModalWindow(this._popupImage);
-    this._setImageDescription(this._cardImage);
   }
 
   _likeClickHandler = () => {
