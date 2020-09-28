@@ -8,13 +8,9 @@ import {
   initialCards,
   formConfig,
   selectorTemplate,
-  profileName,
-  profileDescription,
   profileInputName,
   profileInputDescription,
-  popupProfile,
   popupProfileOpenButton,
-  popupProfileCloseButton,
   formProfileElement,
   popupCardOpenButton,
   formCardElement
@@ -25,32 +21,18 @@ const profileInfo = new UserInfo({
   selectorProfileDescription: '.profile__description'
 });
 
-// const popupAddCard = new PopupWithForm('.popup-card', (data) => {
-//   cardList.addItem(createCard({name: data.placename, link: data.placelink}));
-// });
+const popupEditProfile = new PopupWithForm('.popup-profile', (data) => {
+  profileInfo.setUserInfo(data);
+});
 
+popupEditProfile.setEventListeners();
 
-
-// // сохранение данных о профиле
-// const saveProfile = evt => {
-//   evt.preventDefault();
-//   profileName.textContent = profileInputName.value;
-//   profileDescription.textContent = profileInputDescription.value;
-//   toggleModalWindow(popupProfile);
-// }
-
-// popupProfileOpenButton.addEventListener('click', () => {
-//   profileInputName.value = profileName.textContent;
-//   profileInputDescription.value = profileDescription.textContent;
-//   validateProfileForm.resetForm();
-//   toggleModalWindow(popupProfile);
-// });
-
-// popupProfileCloseButton.addEventListener('click', () => {
-//   toggleModalWindow(popupProfile);
-// });
-//
-// formProfileElement.addEventListener('submit', saveProfile);
+popupProfileOpenButton.addEventListener('click', () => {
+  profileInputName.value = profileInfo.getUserInfo().name;
+  profileInputDescription.value = profileInfo.getUserInfo().description;
+  validateProfileForm.resetForm();
+  popupEditProfile.open();
+})
 
 const popupImage = new PopupWithImage('.popup-image');
 popupImage.setEventListeners();

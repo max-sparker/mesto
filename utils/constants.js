@@ -37,9 +37,6 @@ export const formConfig = {
 // Профиль
 export const popupProfile = document.querySelector('.popup-profile');
 export const popupProfileOpenButton = document.querySelector('.profile__edit-btn');
-export const popupProfileCloseButton = popupProfile.querySelector('.popup__close-btn');
-export const profileName = document.querySelector('.profile__name');
-export const profileDescription = document.querySelector('.profile__description');
 export const formProfileElement = popupProfile.querySelector('.popup__form');
 export const profileInputName = formProfileElement.querySelector('.popup__input_type_username');
 export const profileInputDescription = formProfileElement.querySelector('.popup__input_type_description');
@@ -48,8 +45,6 @@ export const profileInputDescription = formProfileElement.querySelector('.popup_
 export const popupCard = document.querySelector('.popup-card');
 export const popupCardOpenButton = document.querySelector('.profile__add-btn');
 export const formCardElement = popupCard.querySelector('.popup__form');
-export const cardTitle = formCardElement.querySelector('.popup__input_type_placename');
-export const cardLink = formCardElement.querySelector('.popup__input_type_placelink');
 
 // селектор template карточки
 export const selectorTemplate = document.querySelector('#cardTemplate').content;
