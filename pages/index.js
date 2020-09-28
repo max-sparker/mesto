@@ -2,6 +2,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import {
   initialCards,
@@ -19,26 +20,37 @@ import {
   formCardElement
 } from '../utils/constants.js';
 
-// сохранение данных о профиле
-const saveProfile = evt => {
-  evt.preventDefault();
-  profileName.textContent = profileInputName.value;
-  profileDescription.textContent = profileInputDescription.value;
-  toggleModalWindow(popupProfile);
-}
-
-popupProfileOpenButton.addEventListener('click', () => {
-  profileInputName.value = profileName.textContent;
-  profileInputDescription.value = profileDescription.textContent;
-  validateProfileForm.resetForm();
-  toggleModalWindow(popupProfile);
+const profileInfo = new UserInfo({
+  selectorProfileName: '.profile__name',
+  selectorProfileDescription: '.profile__description'
 });
 
-popupProfileCloseButton.addEventListener('click', () => {
-  toggleModalWindow(popupProfile);
-});
+// const popupAddCard = new PopupWithForm('.popup-card', (data) => {
+//   cardList.addItem(createCard({name: data.placename, link: data.placelink}));
+// });
 
-formProfileElement.addEventListener('submit', saveProfile);
+
+
+// // сохранение данных о профиле
+// const saveProfile = evt => {
+//   evt.preventDefault();
+//   profileName.textContent = profileInputName.value;
+//   profileDescription.textContent = profileInputDescription.value;
+//   toggleModalWindow(popupProfile);
+// }
+
+// popupProfileOpenButton.addEventListener('click', () => {
+//   profileInputName.value = profileName.textContent;
+//   profileInputDescription.value = profileDescription.textContent;
+//   validateProfileForm.resetForm();
+//   toggleModalWindow(popupProfile);
+// });
+
+// popupProfileCloseButton.addEventListener('click', () => {
+//   toggleModalWindow(popupProfile);
+// });
+//
+// formProfileElement.addEventListener('submit', saveProfile);
 
 const popupImage = new PopupWithImage('.popup-image');
 popupImage.setEventListeners();
