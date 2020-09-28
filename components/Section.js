@@ -5,10 +5,12 @@ export default class Section {
     this._container = document.querySelector(containerSelector);
   }
 
+  // добавление элемента в контейнер
   addItem(element) {
     this._container.prepend(element);
   }
 
+  // отрисовка всех элементов
   renderItems() {
     this._renderedItems.forEach(item => {
       this._renderer(item);

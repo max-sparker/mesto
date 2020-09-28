@@ -6,22 +6,26 @@ export default class Popup {
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
+  // открытия окна
   open() {
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
   }
 
+  // закрытие окна
   close() {
     this._popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
   }
 
+  // функция закрытия окна по клавише
   _handleEscClose(evt) {
     if (evt.key === keyClose) {
       this.close();
     }
   }
 
+  // установка слушателей кликов
   setEventListeners() {
     this._popup.querySelector('.popup__close-btn').addEventListener('click', () => {
       this.close();

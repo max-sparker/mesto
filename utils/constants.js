@@ -34,6 +34,15 @@ export const formConfig = {
   errorClass: 'popup__error_visible'
 };
 
+// селекторы
+export const selectorTemplate = '#cardTemplate';
+export const selectorPlaceContainer = '.places';
+export const selectorProfileName = '.profile__name';
+export const selectorProfileDescription = '.profile__description';
+export const selectorPopupProfile = '.popup-profile';
+export const selectorPopupImage = '.popup-image';
+export const selectorPopupCard = '.popup-card';
+
 // Профиль
 export const popupProfile = document.querySelector('.popup-profile');
 export const popupProfileOpenButton = document.querySelector('.profile__edit-btn');
@@ -46,8 +55,8 @@ export const popupCard = document.querySelector('.popup-card');
 export const popupCardOpenButton = document.querySelector('.profile__add-btn');
 export const formCardElement = popupCard.querySelector('.popup__form');
 
-// селектор template карточки
-export const selectorTemplate = document.querySelector('#cardTemplate').content;
+
+
 
 // код клавишы закрытия popup
 export const keyClose = "Escape";

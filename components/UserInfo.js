@@ -4,6 +4,7 @@ export default class UserInfo {
     this._description = document.querySelector(selectorProfileDescription);
   }
 
+  // получение данных о профиле
   getUserInfo(){
     return {
       name: this._name.textContent,
@@ -11,9 +12,10 @@ export default class UserInfo {
     }
   }
 
-  setUserInfo({username, description}){
-    this._name.textContent = username;
-    this._description.textContent = description;
+  // сохранение данных профиля
+  setUserInfo(data){
+    this._name.textContent = data.username;
+    this._description.textContent = data.description;
   }
 
 }

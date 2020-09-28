@@ -13,19 +13,25 @@ import {
   popupProfileOpenButton,
   formProfileElement,
   popupCardOpenButton,
-  formCardElement
+  formCardElement,
+  selectorPlaceContainer,
+  selectorProfileName,
+  selectorProfileDescription,
+  selectorPopupProfile,
+  selectorPopupImage,
+  selectorPopupCard
 } from '../utils/constants.js';
 
 /* Профиль */
 
 // экземпляр класса с информацией о пользователе
 const profileInfo = new UserInfo({
-  selectorProfileName: '.profile__name',
-  selectorProfileDescription: '.profile__description'
+  selectorProfileName: selectorProfileName,
+  selectorProfileDescription: selectorProfileDescription
 });
 
 // окно редактирования профиля
-const popupEditProfile = new PopupWithForm('.popup-profile', (data) => {
+const popupEditProfile = new PopupWithForm(selectorPopupProfile, (data) => {
   profileInfo.setUserInfo(data);
 });
 
@@ -49,7 +55,7 @@ popupProfileOpenButton.addEventListener('click', () => {
 /* Изображение */
 
 // окно с полным отражением картинки
-const popupImage = new PopupWithImage('.popup-image');
+const popupImage = new PopupWithImage(selectorPopupImage);
 
 // навешиваем слушатели
 popupImage.setEventListeners();
@@ -74,13 +80,13 @@ const cardList = new Section({
   renderer: (item) => {
     cardList.addItem(createCard(item));
   }
-}, '.places');
+}, selectorPlaceContainer);
 
 // добавляем первоначальные данные в контейнер
 cardList.renderItems();
 
 // окно с формой добавления карточки
-const popupAddCard = new PopupWithForm('.popup-card', (data) => {
+const popupAddCard = new PopupWithForm(selectorPopupCard, (data) => {
   // создаем карточку и добавляем ее в контейнер
   cardList.addItem(createCard({name: data.placename, link: data.placelink}));
 });
@@ -97,5 +103,3 @@ popupCardOpenButton.addEventListener('click', () => {
   validateCardForm.resetForm();
   popupAddCard.open();
 });
-
-
