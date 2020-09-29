@@ -34,6 +34,7 @@ const profileInfo = new UserInfo({
 // окно редактирования профиля
 const popupEditProfile = new PopupWithForm(selectorPopupProfile, (data) => {
   profileInfo.setUserInfo(data);
+  popupEditProfile.close();
 });
 
 // навешиваем слушатели
@@ -90,6 +91,7 @@ cardList.renderItems();
 const popupAddCard = new PopupWithForm(selectorPopupCard, (data) => {
   // создаем карточку и добавляем ее в контейнер
   cardList.addItem(createCard({name: data.placename, link: data.placelink}));
+  popupAddCard.close();
 });
 
 // навешиваем слушатели
