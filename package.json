@@ -1,0 +1,25 @@
+{
+  "name": "3_mesto",
+  "version": "1.0.0",
+  "description": "Данный проект представляет из себя одностраничный Web сайт с адаптивной версткой.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack",
+    "dev": "webpack-dev-server --open --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max-sparker/mesto.git"
+  },
+  "author": "Maksim Isaev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/max-sparker/mesto/issues"
+  },
+  "homepage": "https://github.com/max-sparker/mesto#readme",
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
