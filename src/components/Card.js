@@ -28,7 +28,7 @@ export default class Card {
   }
 
   _getTemplate = () => {
-    this._view = this._template.cloneNode(true).children[0];
+    this._view = this._template.querySelector('.card').cloneNode(true);
     this._cardLikeButton = this._view.querySelector('.card__like-btn');
     this._cardDeleteButton = this._view.querySelector('.card__remove-btn');
     this._cardImage = this._view.querySelector('.card__image');
