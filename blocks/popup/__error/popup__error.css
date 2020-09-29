@@ -1,0 +1,14 @@
+.popup__error {
+  display: block;
+  font-size: 12px;
+  line-height: 15px;
+  height: 15px;
+  color: #ff0000;
+  visibility: hidden;
+}
+
+@media screen and (max-width: 420px) {
+  .popup__error {
+    display: inline;
+  }
+}
