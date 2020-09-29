@@ -4,7 +4,7 @@
   "description": "Данный проект представляет из себя одностраничный Web сайт с адаптивной версткой.",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack",
+    "build": "rimraf dist && webpack",
     "build:prod": "npm run build -- --mode production",
     "dev": "webpack-dev-server --open",
     "deploy": "gh-pages -d dist"
@@ -39,6 +39,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "core-js": "^3.6.5"
+    "core-js": "^3.6.5",
+    "rimraf": "^3.0.2"
   }
 }
