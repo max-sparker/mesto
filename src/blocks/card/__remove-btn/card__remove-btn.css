@@ -10,6 +10,7 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  outline: 0;
 }
 
 .card__remove-btn:hover {

@@ -12,7 +12,10 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар профиля">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар профиля">
+          <button class="profile__avatar-edit-btn" type="button" aria-label="Редактировать аватар"></button>
+        </div>
         <div class="profile__info">
           <div class="profile__title">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -67,7 +70,7 @@
         </figure>
       </div>
     </section>
-    <section class="popup popup-confirm" style="visibility: visible;opacity: 1">
+    <section class="popup popup-confirm">
       <div class="popup__overlay"></div>
       <div class="popup__container">
         <button class="popup__close-btn" type="button" aria-label="Закрыть окно"></button>
