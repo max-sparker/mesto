@@ -46,6 +46,18 @@
         </form>
       </div>
     </section>
+    <section class="popup popup-update-avatar">
+      <div class="popup__overlay"></div>
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button" aria-label="Закрыть окно"></button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="popup__form" name="edit-avatar">
+          <input class="popup__input popup__input_type_avatarlink" type="text" name="avatarlink" placeholder="Ссылка на изображение" required>
+          <span class="popup__error" id="avatarlink-input-error"></span>
+          <button class="popup__btn" type="submit" aria-label="Обновить аватар">Сохранить</button>
+        </form>
+      </div>
+    </section>
     <section class="popup popup-card">
       <div class="popup__overlay"></div>
       <div class="popup__container">
