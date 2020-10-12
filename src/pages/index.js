@@ -1,4 +1,5 @@
 import './index.css';
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -22,6 +23,15 @@ import {
   selectorPopupImage,
   selectorPopupCard
 } from '../utils/constants.js';
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-16',
+  headers: {
+    'Content-Type': 'application/json',
+    'authorization': 'c211647d-a4c4-4f78-99de-8c8f862db42e'
+  }
+});
+
 
 /* Профиль */
 
