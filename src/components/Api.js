@@ -31,6 +31,11 @@ export default class Api {
       .then(this._onError);
   }
 
-
+  getInitialCards() {
+    return fetch(`${this._url}/cards`, {
+      headers: this._headers
+    })
+      .then(this._onError)
+  }
 
 }

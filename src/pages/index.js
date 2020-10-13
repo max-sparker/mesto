@@ -7,7 +7,6 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import {
-  initialCards,
   formConfig,
   selectorTemplate,
   profileInputName,
@@ -100,7 +99,13 @@ const handleCardClick = (item) => {
 }
 
 /* Карточки */
-
+api.getInitialCards()
+  .then((data) => {
+    cardList.renderItems(data)
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 // функция создания карточки
 const createCard = (item) => {
@@ -111,14 +116,10 @@ const createCard = (item) => {
 
 // создаем экземпляр класса с контейнером для хранения списка карточек
 const cardList = new Section({
-  items: initialCards,
   renderer: (item) => {
     cardList.addItem(createCard(item));
   }
 }, selectorPlaceContainer);
-
-// добавляем первоначальные данные в контейнер
-cardList.renderItems();
 
 // окно с формой добавления карточки
 const popupAddCard = new PopupWithForm(selectorPopupCard, (data) => {
