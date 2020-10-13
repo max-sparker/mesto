@@ -34,6 +34,15 @@ const api = new Api({
 
 
 /* Профиль */
+// получение информации о пользоваеле с сервера
+api.getUserInfo()
+  .then((data) => {
+    profileInfo.setUserInfo(data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 
 // экземпляр класса с информацией о пользователе
 const profileInfo = new UserInfo({
