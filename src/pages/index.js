@@ -34,10 +34,14 @@ const api = new Api({
 
 
 /* Профиль */
+
 // получение информации о пользоваеле с сервера
 api.getUserInfo()
   .then((data) => {
-    profileInfo.setUserInfo(data);
+    profileInfo.setUserInfo({
+      username: data.name,
+      description: data.about
+    });
   })
   .catch((err) => {
     console.error(err);
@@ -52,8 +56,17 @@ const profileInfo = new UserInfo({
 
 // окно редактирования профиля
 const popupEditProfile = new PopupWithForm(selectorPopupProfile, (data) => {
-  profileInfo.setUserInfo(data);
-  popupEditProfile.close();
+  api.setUserInfo(data)
+    .then((res) => {
+      profileInfo.setUserInfo({
+        username: res.name,
+        description: res.about
+      });
+      popupEditProfile.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
 });
 
 // навешиваем слушатели
@@ -87,6 +100,7 @@ const handleCardClick = (item) => {
 }
 
 /* Карточки */
+
 
 // функция создания карточки
 const createCard = (item) => {

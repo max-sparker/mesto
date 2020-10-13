@@ -19,4 +19,18 @@ export default class Api {
       .then(this._onError);
   }
 
+  setUserInfo(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.username,
+        about: data.description
+      })
+    })
+      .then(this._onError);
+  }
+
+
+
 }
