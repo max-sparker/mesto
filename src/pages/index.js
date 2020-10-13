@@ -123,9 +123,15 @@ const cardList = new Section({
 
 // окно с формой добавления карточки
 const popupAddCard = new PopupWithForm(selectorPopupCard, (data) => {
-  // создаем карточку и добавляем ее в контейнер
-  cardList.addItem(createCard({name: data.placename, link: data.placelink}));
-  popupAddCard.close();
+  api.createCard(data)
+    .then((data) => {
+      // создаем карточку и добавляем ее в контейнер
+      cardList.addItem(createCard(data));
+      popupAddCard.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
 });
 
 // навешиваем слушатели
