@@ -4,6 +4,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirm from '../components/PopupWithConfirm';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import {
@@ -20,7 +21,8 @@ import {
   selectorProfileDescription,
   selectorPopupProfile,
   selectorPopupImage,
-  selectorPopupCard
+  selectorPopupCard,
+  selectorPopupConfirm
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -95,9 +97,11 @@ const popupImage = new PopupWithImage(selectorPopupImage);
 popupImage.setEventListeners();
 
 // обработка клика по карточке
-const handleCardClick = (item) => {
-  popupImage.open(item);
-}
+// const handleCardClick = (item) => {
+//   popupImage.open(item);
+// }
+
+
 
 /* Карточки */
 api.getInitialCards()
@@ -111,9 +115,32 @@ api.getInitialCards()
 // функция создания карточки
 const createCard = (item) => {
   // создаем экземплят класса с карточкой
-  const card = new Card(item, selectorTemplate, handleCardClick);
+  const card = new Card({
+    data: item,
+    // отображение полной картинки
+    handleCardClick: () => {
+      popupImage.open(item)
+    },
+    // удаление карточки
+    handleCardDeleteClick: () => {
+      popupConfirmDelete.setFormSubmitHandler(() => {
+        api.deleteCard(item._id)
+          .then(() => {
+            card.removeCard();
+            popupConfirmDelete.close();
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      popupConfirmDelete.open();
+    }
+  }, selectorTemplate);
   return card.render();
 }
+
+const popupConfirmDelete = new PopupWithConfirm(selectorPopupConfirm);
+popupConfirmDelete.setEventListeners();
 
 // создаем экземпляр класса с контейнером для хранения списка карточек
 const cardList = new Section({
