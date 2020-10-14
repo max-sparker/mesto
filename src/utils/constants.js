@@ -15,6 +15,7 @@ export const selectorProfileDescription = '.profile__description';
 export const selectorPopupProfile = '.popup-profile';
 export const selectorPopupImage = '.popup-image';
 export const selectorPopupCard = '.popup-card';
+export const selectorPopupConfirm = '.popup-confirm';
 
 // Профиль
 export const popupProfile = document.querySelector('.popup-profile');
