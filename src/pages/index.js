@@ -39,7 +39,8 @@ api.getUserInfo()
   .then((data) => {
     profileInfo.setUserInfo({
       username: data.name,
-      description: data.about
+      description: data.about,
+      id: data._id
     });
   })
   .catch((err) => {

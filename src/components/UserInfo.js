@@ -12,10 +12,15 @@ export default class UserInfo {
     }
   }
 
+  getUserId(){
+    return this._userId;
+  }
+
   // сохранение данных профиля
   setUserInfo(data){
     this._name.textContent = data.username;
     this._description.textContent = data.description;
+    this._userId = data.id;
   }
 
 }
