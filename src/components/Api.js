@@ -35,7 +35,7 @@ export default class Api {
     return fetch(`${this._url}/cards`, {
       headers: this._headers
     })
-      .then(this._onError)
+      .then(this._onError);
   }
 
   createCard(data) {
@@ -47,7 +47,7 @@ export default class Api {
         link: data.placelink
       })
     })
-      .then(this._onError)
+      .then(this._onError);
   }
 
   deleteCard(id) {
@@ -55,7 +55,22 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(this._onError)
+      .then(this._onError);
   }
 
+  setLikeCard(id) {
+    return fetch(`${this._url}/cards/likes/${id}`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(this._onError);
+  }
+
+  removeLikeCard(id) {
+    return fetch(`${this._url}/cards/likes/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._onError);
+  }
 }
