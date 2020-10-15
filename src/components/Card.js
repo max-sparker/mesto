@@ -11,8 +11,6 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
     this._handleCardLikeClick = handleCardLikeClick;
-
-    this._temp = data;
   }
 
   removeCard = () => {
@@ -24,7 +22,7 @@ export default class Card {
     return Boolean(this._likes.find(item => item._id === this._userId));
   }
 
-  handleLike(likeCount) {
+  handleLike = (likeCount) => {
     this._cardLikeButton.classList.toggle('card__like-btn_liked');
     this._cardLikeCount.textContent = likeCount;
   }
