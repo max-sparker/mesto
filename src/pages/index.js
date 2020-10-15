@@ -59,13 +59,17 @@ const profileInfo = new UserInfo({
 
 // окно редактирования профиля
 const popupEditProfile = new PopupWithForm(selectorPopupProfile, (data) => {
+  popupEditProfile.loading(true);
   api.setUserInfo(data)
     .then((res) => {
       profileInfo.setUserInfo(res);
-      popupEditProfile.close();
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      popupEditProfile.loading(false, 'Сохранить');
+      popupEditProfile.close();
     })
 });
 
@@ -88,13 +92,17 @@ popupProfileOpenButton.addEventListener('click', () => {
 
 // окно редактировани аватара профиля
 const popupEditAvatarProfile = new PopupWithForm(selectorPopupProfileAvatar, (data) => {
+  popupEditAvatarProfile.loading(true)
   api.updateUserAvatar(data)
     .then ((res) => {
       profileInfo.setUserInfo(res);
-      popupEditAvatarProfile.close();
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      popupEditAvatarProfile.loading(false, 'Обновить')
+      popupEditAvatarProfile.close();
     })
 });
 
@@ -184,14 +192,18 @@ const cardList = new Section({
 
 // окно с формой добавления карточки
 const popupAddCard = new PopupWithForm(selectorPopupCard, (data) => {
+  popupAddCard.loading(true);
   api.createCard(data)
     .then((data) => {
       // создаем карточку и добавляем ее в контейнер
       cardList.addItem(createCard(data));
-      popupAddCard.close();
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      popupAddCard.loading(false, 'Сохранить');
+      popupAddCard.close();
     })
 });
 

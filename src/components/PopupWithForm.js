@@ -30,4 +30,12 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   }
 
+  loading(loading, defaultButtonText) {
+    if (loading) {
+      this._form.querySelector('.popup__btn').textContent = 'Сохранение...';
+    } else {
+      this._form.querySelector('.popup__btn').textContent = defaultButtonText;
+    }
+  }
+
 }
