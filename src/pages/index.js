@@ -76,8 +76,9 @@ validateProfileForm.enableValidation();
 // кнопка редактирования профиля
 popupProfileOpenButton.addEventListener('click', () => {
   // заполняем поля инфомацией о профиле из экземпляпа класса
-  profileInputName.value = profileInfo.getUserInfo().name;
-  profileInputDescription.value = profileInfo.getUserInfo().description;
+  const userInfo = profileInfo.getUserInfo();
+  profileInputName.value = userInfo.name;
+  profileInputDescription.value = userInfo.description;
   // сбрасываем предупреждения об ошибках
   validateProfileForm.resetForm();
   popupEditProfile.open();
