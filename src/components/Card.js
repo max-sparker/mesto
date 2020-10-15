@@ -6,10 +6,13 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
+    this._isOwner = (data.owner._id === userId);
     this._template = document.querySelector(selectorTemplate).content;
     this._handleCardClick = handleCardClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
     this._handleCardLikeClick = handleCardLikeClick;
+
+    this._temp = data;
   }
 
   removeCard = () => {
@@ -33,11 +36,14 @@ export default class Card {
 
   _setEventListeners = () => {
     this._cardLikeButton.addEventListener('click', this._handleCardLikeClick);
-    this._cardDeleteButton.addEventListener('click', () => {
-      this._handleCardDeleteClick({
-        _id: this._id
+    // навешиваем слушатель только если карточка своя
+    if (this._isOwner) {
+      this._cardDeleteButton.addEventListener('click', () => {
+        this._handleCardDeleteClick({
+          _id: this._id
+        });
       });
-    });
+    }
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick({
         name: this._name,
@@ -54,6 +60,9 @@ export default class Card {
     }
     this._cardLikeCount = this._view.querySelector('.card__like-counter');
     this._cardDeleteButton = this._view.querySelector('.card__remove-btn');
+    if (this._isOwner) {
+      this._cardDeleteButton.classList.add('card__remove-btn_visible');
+    }
     this._cardImage = this._view.querySelector('.card__image');
     this._cardImage.src = this._link;
     this._cardImage.alt = `Фото ${this._name}`;
