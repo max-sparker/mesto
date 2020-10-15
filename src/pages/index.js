@@ -99,16 +99,19 @@ const popupEditAvatarProfile = new PopupWithForm(selectorPopupProfileAvatar, (da
     })
 });
 
+// навшеиваем слушатели
 popupEditAvatarProfile.setEventListeners();
 
 // установка валидатора на форму редактирования аватара
 const validateProfileAvatarForm = new FormValidator(formConfig, formProfileAvatarElement);
 validateProfileAvatarForm.enableValidation();
 
+// кнопка на редактирования аватара пользователя
 updateProfileAvatarButton.addEventListener('click', () => {
   validateProfileAvatarForm.resetForm();
   popupEditAvatarProfile.open();
 })
+
 
 /* Изображение */
 
@@ -117,6 +120,7 @@ const popupImage = new PopupWithImage(selectorPopupImage);
 
 // навешиваем слушатели
 popupImage.setEventListeners();
+
 
 /* Карточки */
 api.getInitialCards()
@@ -150,6 +154,7 @@ const createCard = (item) => {
       })
       popupConfirmDelete.open();
     },
+    // лайк на карточку
     handleCardLikeClick: () => {
       if (!card.isLiked()) {
         api.setLikeCard(item._id)
@@ -172,9 +177,6 @@ const createCard = (item) => {
   }, selectorTemplate, profileInfo.getUserInfo().id);
   return card.render();
 }
-
-const popupConfirmDelete = new PopupWithConfirm(selectorPopupConfirm);
-popupConfirmDelete.setEventListeners();
 
 // создаем экземпляр класса с контейнером для хранения списка карточек
 const cardList = new Section({
@@ -200,8 +202,12 @@ const popupAddCard = new PopupWithForm(selectorPopupCard, (data) => {
     })
 });
 
+// окно с потдверждением удаления карточки
+const popupConfirmDelete = new PopupWithConfirm(selectorPopupConfirm);
+
 // навешиваем слушатели
 popupAddCard.setEventListeners();
+popupConfirmDelete.setEventListeners();
 
 // установка валидатора на форму добавления карточки
 const validateCardForm = new FormValidator(formConfig, formCardElement);
