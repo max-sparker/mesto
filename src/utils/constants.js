@@ -29,7 +29,6 @@ export const popupProfileAvatar = document.querySelector('.popup-update-avatar')
 export const updateProfileAvatarButton = document.querySelector('.profile__avatar-edit-btn');
 export const formProfileAvatarElement = popupProfileAvatar.querySelector('.popup__form');
 
-
 // Карточки
 export const popupCard = document.querySelector('.popup-card');
 export const popupCardOpenButton = document.querySelector('.profile__add-btn');
