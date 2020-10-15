@@ -34,15 +34,6 @@ const api = new Api(apiOptions);
 
 /* Профиль */
 
-// получение информации о пользоваеле с сервера
-api.getUserInfo()
-  .then((data) => {
-    profileInfo.setUserInfo(data);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
 // экземпляр класса с информацией о пользователе
 const profileInfo = new UserInfo({
   selectorProfileName: selectorProfileName,
@@ -56,13 +47,13 @@ const popupEditProfile = new PopupWithForm(selectorPopupProfile, (data) => {
   api.setUserInfo(data)
     .then((res) => {
       profileInfo.setUserInfo(res);
+      popupEditProfile.close();
     })
     .catch((err) => {
       console.error(err);
     })
     .finally(() => {
       popupEditProfile.loading(false, 'Сохранить');
-      popupEditProfile.close();
     })
 });
 
@@ -84,19 +75,19 @@ popupProfileOpenButton.addEventListener('click', () => {
   popupEditProfile.open();
 })
 
-// окно редактировани аватара профиля
+// окно редактирования аватара профиля
 const popupEditAvatarProfile = new PopupWithForm(selectorPopupProfileAvatar, (data) => {
   popupEditAvatarProfile.loading(true)
   api.updateUserAvatar(data)
     .then ((res) => {
       profileInfo.setUserInfo(res);
+      popupEditAvatarProfile.close();
     })
     .catch((err) => {
       console.error(err);
     })
     .finally(() => {
       popupEditAvatarProfile.loading(false, 'Обновить')
-      popupEditAvatarProfile.close();
     })
 });
 
@@ -124,13 +115,6 @@ popupImage.setEventListeners();
 
 
 /* Карточки */
-api.getInitialCards()
-  .then((data) => {
-    cardList.renderItems(data)
-  })
-  .catch((err) => {
-    console.error(err);
-  });
 
 // функция создания карточки
 const createCard = (item) => {
@@ -193,13 +177,13 @@ const popupAddCard = new PopupWithForm(selectorPopupCard, (data) => {
     .then((data) => {
       // создаем карточку и добавляем ее в контейнер
       cardList.addItem(createCard(data));
+      popupAddCard.close();
     })
     .catch((err) => {
       console.error(err);
     })
     .finally(() => {
       popupAddCard.loading(false, 'Сохранить');
-      popupAddCard.close();
     })
 });
 
@@ -219,3 +203,13 @@ popupCardOpenButton.addEventListener('click', () => {
   validateCardForm.resetForm();
   popupAddCard.open();
 });
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+.then((values) => {
+  const [userInfo, cards] = values;
+  profileInfo.setUserInfo(userInfo);
+  cardList.renderItems(cards);
+})
+.catch((err) => {
+  console.error(err);
+})
