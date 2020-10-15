@@ -1,6 +1,6 @@
 export default class Card {
 
-  constructor({data, handleCardClick, handleCardDeleteClick}, selectorTemplate, userId) {
+  constructor({data, handleCardClick, handleCardDeleteClick, handleCardLikeClick}, selectorTemplate, userId) {
     this._userId = userId;
     this._id = data._id;
     this._name = data.name;
@@ -9,6 +9,7 @@ export default class Card {
     this._template = document.querySelector(selectorTemplate).content;
     this._handleCardClick = handleCardClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
+    this._handleCardLikeClick = handleCardLikeClick;
   }
 
   removeCard = () => {
@@ -16,21 +17,22 @@ export default class Card {
     this._view = null;
   }
 
+  isLiked = () => {
+    return Boolean(this._likes.find(item => item._id === this._userId));
+  }
+
+  handleLike(likeCount) {
+    this._cardLikeButton.classList.toggle('card__like-btn_liked');
+    this._cardLikeCount.textContent = likeCount;
+  }
+
   _getLikeCount = () => {
     this._likesCount = this._likes.length;
     this._cardLikeCount.textContent = this._likesCount;
   }
 
-  _getHasMyLike = () => {
-    return Boolean(this._likes.find(item => item._id === this._userId));
-  }
-
-  _likeClickHandler = () => {
-    this._cardLikeButton.classList.toggle('card__like-btn_liked');
-  }
-
   _setEventListeners = () => {
-    this._cardLikeButton.addEventListener('click', this._likeClickHandler);
+    this._cardLikeButton.addEventListener('click', this._handleCardLikeClick);
     this._cardDeleteButton.addEventListener('click', () => {
       this._handleCardDeleteClick({
         _id: this._id
@@ -47,7 +49,7 @@ export default class Card {
   _getTemplate = () => {
     this._view = this._template.querySelector('.card').cloneNode(true);
     this._cardLikeButton = this._view.querySelector('.card__like-btn');
-    if (this._getHasMyLike()) {
+    if (this.isLiked()) {
       this._cardLikeButton.classList.add('card__like-btn_liked');
     }
     this._cardLikeCount = this._view.querySelector('.card__like-counter');

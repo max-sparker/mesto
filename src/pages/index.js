@@ -134,8 +134,27 @@ const createCard = (item) => {
           });
       })
       popupConfirmDelete.open();
+    },
+    handleCardLikeClick: () => {
+      if (!card.isLiked()) {
+        api.setLikeCard(item._id)
+          .then((data) => {
+            card.handleLike(data.likes.length);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      } else {
+        api.removeLikeCard(item._id)
+          .then((data) => {
+            card.handleLike(data.likes.length);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }
     }
-  }, selectorTemplate);
+  }, selectorTemplate, profileInfo.getUserId());
   return card.render();
 }
 
