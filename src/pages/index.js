@@ -208,7 +208,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 .then((values) => {
   const [userInfo, cards] = values;
   profileInfo.setUserInfo(userInfo);
-  cardList.renderItems(cards);
+  cardList.renderItems(cards.reverse());
 })
 .catch((err) => {
   console.error(err);
